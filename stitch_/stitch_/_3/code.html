@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html class="dark" dir="rtl" lang="ar"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ديوان الصوفية - قائمة القصائد</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;family=Amiri:ital,wght@0,400;0,700;1,400&amp;family=Cairo:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0a5750",
+                        "primary-light": "#158c82",
+                        "background-light": "#fafaf9",
+                        "background-dark": "#121616", // Deep charcoal
+                        "surface-dark": "#1c2626",
+                        "surface-glass": "rgba(28, 38, 38, 0.7)",
+                    },
+                    fontFamily: {
+                        "display": ["Cairo", "sans-serif"],
+                        "serif": ["Amiri", "serif"],
+                    },
+                    backgroundImage: {
+                        'subtle-gradient': 'radial-gradient(circle at 50% 0%, #1a2e2c 0%, #121616 70%)',
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "2xl": "2rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #121616; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #293837; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3c5351; 
+        }
+        .glass-card {
+            background: rgba(30, 41, 41, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+        .glass-header {
+            background: rgba(18, 22, 22, 0.85);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-white font-display overflow-x-hidden selection:bg-primary selection:text-white">
+<div class="flex min-h-screen bg-subtle-gradient relative">
+<aside class="hidden lg:flex w-72 sticky top-0 h-screen flex-col border-l border-white/5 bg-[#111817]/95 backdrop-blur-sm z-50">
+<div class="flex flex-col h-full justify-between p-6">
+<div class="flex flex-col gap-6">
+<div class="flex items-center gap-4 mb-4">
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-12 shadow-lg shadow-primary/20 ring-2 ring-white/5" data-alt="Abstract geometric Sufi pattern in teal and gold" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCANyPYrIx73LcCI1HcpRmTQQVOCiJTP84dnw2ZFcG_zhLKqIq4bvaydG9g7EwJ6GEAxWHHcKpTfnPC-vyk9z69eV1GVNPAprSRXTZoEGa4cuApPHIi0N45-YGCHMibqAlCWoS6ernju893H89GFAw4pF4tNQWowAhxnBwKzv5Gf7-bVTnx1JjvAl4NM3cWu85HvhKv-OzG_jXPTv8ajx8G14QtIi5_9fejbD9NAlWLgON_UTH3nXnS6b0qvGvxOQ_kTvq70Gt7kGVG");'>
+</div>
+<div class="flex flex-col">
+<h1 class="text-white text-lg font-serif font-bold leading-tight">ديوان الصوفية</h1>
+<p class="text-[#9db8b6] text-xs font-normal">رحلة في الشعر العرفاني</p>
+</div>
+</div>
+<nav class="flex flex-col gap-2">
+<a class="flex items-center gap-4 px-4 py-3 rounded-xl hover:bg-white/5 transition-colors group" href="#">
+<span class="material-symbols-outlined text-[#9db8b6] group-hover:text-white transition-colors">home</span>
+<span class="text-[#9db8b6] text-sm font-medium group-hover:text-white transition-colors">الرئيسية</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-xl bg-primary/15 border border-primary/20 shadow-sm shadow-primary/5" href="#">
+<span class="material-symbols-outlined text-primary-light filled">auto_awesome</span>
+<span class="text-white text-sm font-medium">إلهيات</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-xl hover:bg-white/5 transition-colors group" href="#">
+<span class="material-symbols-outlined text-[#9db8b6] group-hover:text-white transition-colors">mosque</span>
+<span class="text-[#9db8b6] text-sm font-medium group-hover:text-white transition-colors">نبويات</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-xl hover:bg-white/5 transition-colors group" href="#">
+<span class="material-symbols-outlined text-[#9db8b6] group-hover:text-white transition-colors">groups</span>
+<span class="text-[#9db8b6] text-sm font-medium group-hover:text-white transition-colors">حضرة</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-xl hover:bg-white/5 transition-colors group" href="#">
+<span class="material-symbols-outlined text-[#9db8b6] group-hover:text-white transition-colors">person</span>
+<span class="text-[#9db8b6] text-sm font-medium group-hover:text-white transition-colors">مفرد</span>
+</a>
+</nav>
+</div>
+<div class="flex flex-col gap-2 mt-auto border-t border-white/5 pt-6">
+<a class="flex items-center gap-4 px-4 py-3 rounded-xl hover:bg-white/5 transition-colors group" href="#">
+<span class="material-symbols-outlined text-[#9db8b6] group-hover:text-white transition-colors">settings</span>
+<span class="text-[#9db8b6] text-sm font-medium group-hover:text-white transition-colors">الإعدادات</span>
+</a>
+</div>
+</div>
+</aside>
+<main class="flex-1 flex flex-col relative w-full">
+<div class="lg:hidden flex items-center justify-between p-4 glass-header sticky top-0 z-40 border-b border-white/5">
+<div class="flex items-center gap-3">
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-8 ring-1 ring-white/10" data-alt="Small app logo placeholder" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAem4CavZOwUfn6WPaMZqyyFMwI7IRfbOP3K3E4ZeLytI2jkVRiErDCLEUReV2cN3uj7pB0aR9ezrBD3MLl1y8jsUCK7Hx8PvG-j_E48x4Jy5nTT6E8Z4-ACALeMecfjS4J4Y0FXRK3wUHwT5tEaImJI46UvM0Qyc1QMTXBZiay86ekW8c1rYajb8AUDUwqmCQBhYmJYOOBSjCU3hs1ITHvMKGzcB_xc3GqhNOvUn9lVbmaiTP1dnpGMYk7hRVJMom2XP227g8gslUs");'></div>
+<span class="font-serif font-bold text-lg">ديوان الصوفية</span>
+</div>
+<button class="text-white p-2">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+<div class="flex-1 overflow-y-auto">
+<div class="mx-auto w-full max-w-3xl px-4 py-8 md:px-8 md:py-12">
+<header class="mb-10 flex flex-col gap-3 relative">
+<div class="absolute -top-10 -right-10 w-32 h-32 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
+<h1 class="text-white text-4xl md:text-5xl font-serif font-bold leading-tight relative z-10">قائمة القصائد</h1>
+<p class="text-[#9db8b6] text-base font-normal leading-normal relative z-10 max-w-md">
+                            استكشف روائع الشعر الصوفي مرتبة حسب المقامات الموسيقية والشعراء
+                        </p>
+</header>
+<div class="sticky top-0 lg:top-0 z-30 pt-2 pb-6 -mx-4 px-4 glass-header lg:bg-transparent lg:backdrop-filter-none lg:relative lg:p-0 lg:mb-8 transition-all">
+<div class="flex flex-row gap-4">
+<div class="relative flex-1 min-w-[140px]">
+<label class="block text-[#9db8b6] text-xs font-medium mb-1.5 px-1">المقام الموسيقي</label>
+<div class="relative">
+<select class="w-full appearance-none bg-[#1c2626] border border-[#3c5351] text-white rounded-xl px-4 py-3 pr-10 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all text-sm font-medium cursor-pointer hover:border-primary/50 font-display">
+<option value="">الكل</option>
+<option value="rast">الراست</option>
+<option value="bayati">البياتي</option>
+<option value="sikah">السيكاه</option>
+<option value="hijaz">الحجاز</option>
+</select>
+<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-[#9db8b6]">
+<span class="material-symbols-outlined text-lg">music_note</span>
+</div>
+<div class="pointer-events-none absolute inset-y-0 left-0 flex items-center px-3 text-[#9db8b6]">
+<span class="material-symbols-outlined text-lg">expand_more</span>
+</div>
+</div>
+</div>
+<div class="relative flex-1 min-w-[140px]">
+<label class="block text-[#9db8b6] text-xs font-medium mb-1.5 px-1">الشاعر</label>
+<div class="relative">
+<select class="w-full appearance-none bg-[#1c2626] border border-[#3c5351] text-white rounded-xl px-4 py-3 pr-10 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all text-sm font-medium cursor-pointer hover:border-primary/50 font-display">
+<option value="">جميع الشعراء</option>
+<option value="ibn-al-farid">ابن الفارض</option>
+<option value="ibn-arabi">ابن عربي</option>
+<option value="al-hallaj">الحلاج</option>
+<option value="al-busiri">البوصيري</option>
+</select>
+<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-[#9db8b6]">
+<span class="material-symbols-outlined text-lg">person_search</span>
+</div>
+<div class="pointer-events-none absolute inset-y-0 left-0 flex items-center px-3 text-[#9db8b6]">
+<span class="material-symbols-outlined text-lg">expand_more</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-5 pb-20">
+<article class="glass-card rounded-2xl p-5 group hover:bg-[#1c2626]/60 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1 cursor-pointer relative overflow-hidden">
+<div class="absolute top-0 right-0 w-1 h-full bg-gradient-to-b from-primary/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="flex items-start justify-between gap-4">
+<div class="flex-1 flex flex-col gap-2">
+<div class="flex items-center gap-2 mb-1">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-primary/20 border border-primary/20 text-primary-light text-xs font-bold tracking-wide">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-light"></span>
+                                            مقام الراست
+                                        </span>
+</div>
+<h3 class="text-white text-2xl md:text-3xl font-serif font-bold leading-normal group-hover:text-primary-light transition-colors">
+                                        زدني بفرط الحب فيك تحيرا
+                                    </h3>
+<p class="text-[#9db8b6] text-sm font-medium flex items-center gap-2 mt-1">
+<span class="material-symbols-outlined text-base opacity-70">edit</span>
+                                        سلطان العاشقين: ابن الفارض
+                                    </p>
+</div>
+<div class="flex flex-col gap-3 items-center">
+<button aria-label="Add to favorites" class="text-[#9db8b6] hover:text-red-400 hover:bg-white/5 p-2 rounded-full transition-all">
+<span class="material-symbols-outlined">favorite</span>
+</button>
+</div>
+</div>
+<div class="mt-4 pt-4 border-t border-white/5 flex flex-wrap items-center justify-between text-xs text-[#6b8c89] gap-3">
+<div class="flex items-center gap-3">
+<button class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 hover:bg-primary/20 hover:text-primary-light transition-colors text-[#9db8b6]">
+<span class="material-symbols-outlined text-lg">podcasts</span>
+<span class="font-medium">عرض للجميع</span>
+</button>
+<button class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 hover:bg-primary/20 hover:text-primary-light transition-colors text-[#9db8b6]">
+<span class="material-symbols-outlined text-lg">playlist_add</span>
+<span class="font-medium">اضافه للوصله</span>
+</button>
+</div>
+<span class="group-hover:translate-x-[-4px] transition-transform duration-300 flex items-center gap-1 text-primary-light font-bold mr-auto">
+                                    اقرأ القصيدة
+                                    <span class="material-symbols-outlined text-sm rotate-180">arrow_right_alt</span>
+</span>
+</div>
+</article>
+<article class="glass-card rounded-2xl p-5 group hover:bg-[#1c2626]/60 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1 cursor-pointer relative overflow-hidden">
+<div class="absolute top-0 right-0 w-1 h-full bg-gradient-to-b from-primary/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="flex items-start justify-between gap-4">
+<div class="flex-1 flex flex-col gap-2">
+<div class="flex items-center gap-2 mb-1">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#8c7e15]/20 border border-[#8c7e15]/20 text-[#d4c34a] text-xs font-bold tracking-wide">
+<span class="w-1.5 h-1.5 rounded-full bg-[#d4c34a]"></span>
+                                            مقام السيكاه
+                                        </span>
+</div>
+<h3 class="text-white text-2xl md:text-3xl font-serif font-bold leading-normal group-hover:text-primary-light transition-colors">
+                                        أدين بدين الحب أنى توجهت
+                                    </h3>
+<p class="text-[#9db8b6] text-sm font-medium flex items-center gap-2 mt-1">
+<span class="material-symbols-outlined text-base opacity-70">edit</span>
+                                        الشيخ الأكبر: محيي الدين بن عربي
+                                    </p>
+</div>
+<div class="flex flex-col gap-3 items-center">
+<button class="text-[#9db8b6] hover:text-red-400 hover:bg-white/5 p-2 rounded-full transition-all">
+<span class="material-symbols-outlined">favorite</span>
+</button>
+</div>
+</div>
+<div class="mt-4 pt-4 border-t border-white/5 flex flex-wrap items-center justify-between text-xs text-[#6b8c89] gap-3">
+<div class="flex items-center gap-3">
+<button class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 hover:bg-primary/20 hover:text-primary-light transition-colors text-[#9db8b6]">
+<span class="material-symbols-outlined text-lg">podcasts</span>
+<span class="font-medium">عرض للجميع</span>
+</button>
+<button class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 hover:bg-primary/20 hover:text-primary-light transition-colors text-[#9db8b6]">
+<span class="material-symbols-outlined text-lg">playlist_add</span>
+<span class="font-medium">اضافه للوصله</span>
+</button>
+</div>
+<span class="group-hover:translate-x-[-4px] transition-transform duration-300 flex items-center gap-1 text-primary-light font-bold mr-auto">
+                                    اقرأ القصيدة
+                                    <span class="material-symbols-outlined text-sm rotate-180">arrow_right_alt</span>
+</span>
+</div>
+</article>
+<article class="glass-card rounded-2xl p-5 group hover:bg-[#1c2626]/60 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1 cursor-pointer relative overflow-hidden">
+<div class="absolute top-0 right-0 w-1 h-full bg-gradient-to-b from-primary/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="flex items-start justify-between gap-4">
+<div class="flex-1 flex flex-col gap-2">
+<div class="flex items-center gap-2 mb-1">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#8c3a15]/20 border border-[#8c3a15]/20 text-[#d4764a] text-xs font-bold tracking-wide">
+<span class="w-1.5 h-1.5 rounded-full bg-[#d4764a]"></span>
+                                            مقام الحجاز
+                                        </span>
+</div>
+<h3 class="text-white text-2xl md:text-3xl font-serif font-bold leading-normal group-hover:text-primary-light transition-colors">
+                                        مولاي صل وسلم دائماً أبداً
+                                    </h3>
+<p class="text-[#9db8b6] text-sm font-medium flex items-center gap-2 mt-1">
+<span class="material-symbols-outlined text-base opacity-70">edit</span>
+                                        الإمام البوصيري
+                                    </p>
+</div>
+<div class="flex flex-col gap-3 items-center">
+<button class="text-red-400 bg-red-400/10 hover:bg-red-400/20 p-2 rounded-full transition-all">
+<span class="material-symbols-outlined filled">favorite</span>
+</button>
+</div>
+</div>
+<div class="mt-4 pt-4 border-t border-white/5 flex flex-wrap items-center justify-between text-xs text-[#6b8c89] gap-3">
+<div class="flex items-center gap-3">
+<button class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 hover:bg-primary/20 hover:text-primary-light transition-colors text-[#9db8b6]">
+<span class="material-symbols-outlined text-lg">podcasts</span>
+<span class="font-medium">عرض للجميع</span>
+</button>
+<button class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 hover:bg-primary/20 hover:text-primary-light transition-colors text-[#9db8b6]">
+<span class="material-symbols-outlined text-lg">playlist_add</span>
+<span class="font-medium">اضافه للوصله</span>
+</button>
+</div>
+<span class="group-hover:translate-x-[-4px] transition-transform duration-300 flex items-center gap-1 text-primary-light font-bold mr-auto">
+                                    اقرأ القصيدة
+                                    <span class="material-symbols-outlined text-sm rotate-180">arrow_right_alt</span>
+</span>
+</div>
+</article>
+<article class="glass-card rounded-2xl p-5 group hover:bg-[#1c2626]/60 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1 cursor-pointer relative overflow-hidden">
+<div class="absolute top-0 right-0 w-1 h-full bg-gradient-to-b from-primary/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="flex items-start justify-between gap-4">
+<div class="flex-1 flex flex-col gap-2">
+<div class="flex items-center gap-2 mb-1">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#2a8c15]/20 border border-[#2a8c15]/20 text-[#60d44a] text-xs font-bold tracking-wide">
+<span class="w-1.5 h-1.5 rounded-full bg-[#60d44a]"></span>
+                                            مقام البياتي
+                                        </span>
+</div>
+<h3 class="text-white text-2xl md:text-3xl font-serif font-bold leading-normal group-hover:text-primary-light transition-colors">
+                                        والله ما طلعت شمس ولا غربت
+                                    </h3>
+<p class="text-[#9db8b6] text-sm font-medium flex items-center gap-2 mt-1">
+<span class="material-symbols-outlined text-base opacity-70">edit</span>
+                                        الحسين بن منصور الحلاج
+                                    </p>
+</div>
+<div class="flex flex-col gap-3 items-center">
+<button class="text-[#9db8b6] hover:text-red-400 hover:bg-white/5 p-2 rounded-full transition-all">
+<span class="material-symbols-outlined">favorite</span>
+</button>
+</div>
+</div>
+<div class="mt-4 pt-4 border-t border-white/5 flex flex-wrap items-center justify-between text-xs text-[#6b8c89] gap-3">
+<div class="flex items-center gap-3">
+<button class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 hover:bg-primary/20 hover:text-primary-light transition-colors text-[#9db8b6]">
+<span class="material-symbols-outlined text-lg">podcasts</span>
+<span class="font-medium">عرض للجميع</span>
+</button>
+<button class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 hover:bg-primary/20 hover:text-primary-light transition-colors text-[#9db8b6]">
+<span class="material-symbols-outlined text-lg">playlist_add</span>
+<span class="font-medium">اضافه للوصله</span>
+</button>
+</div>
+<span class="group-hover:translate-x-[-4px] transition-transform duration-300 flex items-center gap-1 text-primary-light font-bold mr-auto">
+                                    اقرأ القصيدة
+                                    <span class="material-symbols-outlined text-sm rotate-180">arrow_right_alt</span>
+</span>
+</div>
+</article>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>
