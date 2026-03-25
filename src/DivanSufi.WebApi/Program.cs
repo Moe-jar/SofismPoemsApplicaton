@@ -19,7 +19,10 @@ builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(policy =>
     {
-        policy.WithOrigins("http://localhost:5500", "http://127.0.0.1:5500", "http://localhost:3000", "null")
+        var origins = new List<string> { "http://localhost:5500", "http://127.0.0.1:5500", "http://localhost:3000" };
+        if (builder.Environment.IsDevelopment())
+            origins.Add("null"); // allow file:// origins in development only
+        policy.WithOrigins(origins.ToArray())
               .AllowAnyHeader()
               .AllowAnyMethod()
               .AllowCredentials();
