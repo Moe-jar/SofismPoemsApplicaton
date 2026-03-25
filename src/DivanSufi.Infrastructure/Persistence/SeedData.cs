@@ -9,7 +9,10 @@ public static class SeedData
 {
     public static void Seed(AppDbContext context)
     {
-        context.Database.Migrate();
+        if (context.Database.IsRelational())
+            context.Database.Migrate();
+        else
+            context.Database.EnsureCreated();
 
         if (!context.Users.Any())
         {

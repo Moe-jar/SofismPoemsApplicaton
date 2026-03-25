@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-title-key="reference">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>المراجع - ديوان الصوفية</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="/css/design.css">
+</head>
+<body>
+  <div class="page-content">
+    <!-- Top Navigation -->
+    <nav class="nav-top">
+      <div class="nav-actions">
+        <button id="backBtn" class="btn btn-icon">
+          <span class="material-symbols-outlined">arrow_back</span>
+        </button>
+      </div>
+      <h1 id="pageTitle" class="nav-title" data-i18n="reference">المراجع</h1>
+      <div class="nav-actions">
+        <!-- Space for future actions -->
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Tabs -->
+      <div class="tabs">
+        <button id="poetsTabBtn" class="tab-btn active" data-i18n="poets">الشعراء</button>
+        <button id="maqamatTabBtn" class="tab-btn" data-i18n="maqamat">المقامات</button>
+      </div>
+
+      <!-- Poets Tab -->
+      <div id="poetsTab" class="tab-content active">
+        <div style="margin-bottom: 1rem; text-align: center;">
+          <button id="addPoetBtn" class="btn btn-primary">
+            <span class="material-symbols-outlined">add</span>
+            <span data-i18n="add">إضافة</span> <span data-i18n="poet">شاعر</span>
+          </button>
+        </div>
+        
+        <div id="poetsList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <!-- Poets will be loaded here -->
+        </div>
+      </div>
+
+      <!-- Maqamat Tab -->
+      <div id="maqamatTab" class="tab-content">
+        <div style="margin-bottom: 1rem; text-align: center;">
+          <button id="addMaqamBtn" class="btn btn-primary">
+            <span class="material-symbols-outlined">add</span>
+            <span data-i18n="add">إضافة</span> <span data-i18n="maqam">مقام</span>
+          </button>
+        </div>
+        
+        <div id="maqamatList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <!-- Maqamat will be loaded here -->
+        </div>
+      </div>
+    </main>
+
+    <!-- Bottom Navigation -->
+    <div id="nav"></div>
+  </div>
+
+  <script type="module" src="/js/pages/reference.js"></script>
+</body>
+</html>
