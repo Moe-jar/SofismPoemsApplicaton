@@ -5,3 +5,6 @@ obj/
 *.db-wal
 .vs/
 *.user
+.env
+.env.*
+!.env.example

@@ -1,0 +1,26 @@
+services:
+  - type: web
+    name: divan-sufi-api
+    env: docker
+    dockerfilePath: ./src/DivanSufi.WebApi/Dockerfile
+    dockerContext: .
+    plan: free
+    healthCheckPath: /
+    envVars:
+      - key: ASPNETCORE_ENVIRONMENT
+        value: Production
+      - key: ASPNETCORE_URLS
+        value: http://+:10000
+      # Set DATABASE_URL in the Render dashboard (Neon connection string)
+      - key: DATABASE_URL
+        sync: false
+      # Set JWT_KEY in the Render dashboard (strong random secret)
+      - key: JWT_KEY
+        sync: false
+      - key: JWT_ISSUER
+        value: DivanSufi
+      - key: JWT_AUDIENCE
+        value: DivanSufiUsers
+      # Set ALLOWED_ORIGINS to your Vercel/Netlify frontend URL
+      - key: ALLOWED_ORIGINS
+        sync: false
