@@ -1,0 +1,41 @@
+name: Deploy Frontend to Vercel
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'frontend/**'
+      - 'vercel.json'
+
+jobs:
+  deploy:
+    name: Deploy to Vercel
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest
+
+      - name: Pull Vercel environment
+        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+        working-directory: frontend
+
+      - name: Build project
+        run: |
+          # Inject runtime API base URL into config.js using Node.js (more robust than sed)
+          node -e "
+            const fs = require('fs');
+            const path = 'js/config.js';
+            const content = fs.readFileSync(path, 'utf8');
+            fs.writeFileSync(path, content.replace(/http:\/\/localhost:5000/g, process.env.API_BASE));
+          "
+          vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+        working-directory: frontend
+        env:
+          API_BASE: ${{ secrets.API_BASE }}
+
+      - name: Deploy to Vercel
+        run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
+        working-directory: frontend

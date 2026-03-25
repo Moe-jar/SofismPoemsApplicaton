@@ -10,6 +10,18 @@ using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Allow environment variables like JWT_KEY / JWT_ISSUER / JWT_AUDIENCE to override
+// the appsettings values (used on Render where double-underscore naming is inconvenient).
+var jwtKey = Environment.GetEnvironmentVariable("JWT_KEY")
+             ?? builder.Configuration["Jwt:Key"]
+             ?? throw new InvalidOperationException("JWT signing key is not configured. Set JWT_KEY environment variable or Jwt:Key in appsettings.");
+var jwtIssuer = Environment.GetEnvironmentVariable("JWT_ISSUER")
+                ?? builder.Configuration["Jwt:Issuer"]
+                ?? "DivanSufi";
+var jwtAudience = Environment.GetEnvironmentVariable("JWT_AUDIENCE")
+                  ?? builder.Configuration["Jwt:Audience"]
+                  ?? "DivanSufiUsers";
+
 builder.Services.AddControllers();
 builder.Services.AddSignalR();
 builder.Services.AddInfrastructure(builder.Configuration);
@@ -34,6 +46,11 @@ builder.Services.AddCors(options =>
         var configOrigins = builder.Configuration.GetSection("AllowedOrigins").Get<string[]>();
         if (configOrigins?.Length > 0) origins.AddRange(configOrigins);
 
+        // Also support ALLOWED_ORIGINS env var (comma-separated) used on Render
+        var envOrigins = Environment.GetEnvironmentVariable("ALLOWED_ORIGINS");
+        if (!string.IsNullOrWhiteSpace(envOrigins))
+            origins.AddRange(envOrigins.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries));
+
         policy.WithOrigins(origins.ToArray())
               .AllowAnyHeader()
               .AllowAnyMethod()
@@ -50,9 +67,9 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidateAudience = true,
             ValidateLifetime = true,
             ValidateIssuerSigningKey = true,
-            ValidIssuer = builder.Configuration["Jwt:Issuer"],
-            ValidAudience = builder.Configuration["Jwt:Audience"],
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!))
+            ValidIssuer = jwtIssuer,
+            ValidAudience = jwtAudience,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey))
         };
         options.Events = new JwtBearerEvents
         {

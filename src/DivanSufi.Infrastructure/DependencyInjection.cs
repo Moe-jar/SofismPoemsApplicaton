@@ -1,4 +1,5 @@
 using DivanSufi.Application.Interfaces;
+using DivanSufi.Infrastructure.Migrations;
 using DivanSufi.Infrastructure.Persistence;
 using DivanSufi.Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
@@ -11,8 +12,17 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
+        var connectionString = NeonPostgresSetup.ResolveConnectionString(configuration);
+        var usePostgres = NeonPostgresSetup.IsPostgresConnection(connectionString);
+
         services.AddDbContext<AppDbContext>(options =>
-            options.UseSqlite(configuration.GetConnectionString("DefaultConnection")));
+        {
+            if (usePostgres)
+                options.UseNpgsql(connectionString, npgsql =>
+                    npgsql.EnableRetryOnFailure(3));
+            else
+                options.UseSqlite(connectionString);
+        });
 
         services.AddScoped<IAppDbContext>(provider => provider.GetRequiredService<AppDbContext>());
         services.AddScoped<ITokenService, TokenService>();

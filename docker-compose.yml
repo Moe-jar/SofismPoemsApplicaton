@@ -1,0 +1,39 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: divansufi
+      POSTGRES_PASSWORD: divansufi_dev
+      POSTGRES_DB: divansufi_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U divansufi"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  api:
+    build:
+      context: .
+      dockerfile: src/DivanSufi.WebApi/Dockerfile
+    ports:
+      - "5000:10000"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
+      ASPNETCORE_URLS: http://+:10000
+      DATABASE_URL: postgres://divansufi:divansufi_dev@db:5432/divansufi_db
+      JWT_KEY: local-dev-secret-key-change-in-production-32chars
+      JWT_ISSUER: DivanSufi
+      JWT_AUDIENCE: DivanSufiUsers
+      ALLOWED_ORIGINS: http://localhost:3000,http://localhost:5500,http://127.0.0.1:5500
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  postgres_data:
