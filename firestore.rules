@@ -1,0 +1,80 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ─── Helper Functions ────────────────────────────────────────────────────
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isLead() {
+      return isAuthenticated() &&
+        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'LeadMunshid';
+    }
+
+    function isMunshid() {
+      return isAuthenticated() &&
+        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role in ['Munshid', 'LeadMunshid'];
+    }
+
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    // ─── Users Collection ────────────────────────────────────────────────────
+    match /users/{userId} {
+      // Any authenticated user can read their own profile
+      allow read: if isOwner(userId) || isLead();
+      // Only the user themselves can update their own profile (not role)
+      allow update: if isOwner(userId) && !('role' in request.resource.data.diff(resource.data).affectedKeys());
+      // Only LeadMunshid can create/delete users
+      allow create, delete: if isLead();
+    }
+
+    // ─── Poems Collection ────────────────────────────────────────────────────
+    match /poems/{poemId} {
+      // All authenticated users can read poems
+      allow read: if isAuthenticated();
+      // Only LeadMunshid can create, update, or delete poems
+      allow create, update, delete: if isLead();
+    }
+
+    // ─── Poets Collection ────────────────────────────────────────────────────
+    match /poets/{poetId} {
+      allow read: if isAuthenticated();
+      allow create, update, delete: if isLead();
+    }
+
+    // ─── Maqamat Collection ──────────────────────────────────────────────────
+    match /maqamat/{maqamId} {
+      allow read: if isAuthenticated();
+      allow create, update, delete: if isLead();
+    }
+
+    // ─── Waslat (Playlists) Collection ───────────────────────────────────────
+    match /waslat/{waslaId} {
+      allow read: if isAuthenticated();
+      allow create, update, delete: if isLead();
+
+      // Wasla items sub-collection
+      match /items/{itemId} {
+        allow read: if isAuthenticated();
+        allow create, update, delete: if isLead();
+      }
+    }
+
+    // ─── Current State Collection ─────────────────────────────────────────────
+    // Real-time current poem/wasla being shared in the Hadra session
+    match /currentState/{docId} {
+      allow read: if isAuthenticated();
+      allow write: if isLead();
+    }
+
+    // ─── Share History Collection ─────────────────────────────────────────────
+    match /shareHistory/{historyId} {
+      allow read: if isAuthenticated();
+      allow create: if isLead();
+      allow update, delete: if false; // History is immutable
+    }
+  }
+}
