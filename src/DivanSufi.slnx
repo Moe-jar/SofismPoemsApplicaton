@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="DivanSufi.Application/DivanSufi.Application.csproj" />
+  <Project Path="DivanSufi.Domain/DivanSufi.Domain.csproj" />
+  <Project Path="DivanSufi.Infrastructure/DivanSufi.Infrastructure.csproj" />
+  <Project Path="DivanSufi.WebApi/DivanSufi.WebApi.csproj" />
+</Solution>
