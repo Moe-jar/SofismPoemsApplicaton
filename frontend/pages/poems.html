@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html class="dark" dir="rtl" lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>قائمة القصائد - ديوان الصوفية</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&family=Amiri:ital,wght@0,400;0,700&family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#0a5750",
+            "primary-light": "#158c82",
+            "background-dark": "#121616",
+            "surface-dark": "#1c2626",
+          },
+          fontFamily: {
+            "display": ["Cairo", "Manrope", "sans-serif"],
+            "serif": ["Amiri", "serif"],
+          },
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="../css/design.css">
+</head>
+<body class="bg-[#121616] text-white font-display min-h-screen selection:bg-primary selection:text-white overflow-x-hidden">
+
+  <!-- Background gradient -->
+  <div class="fixed inset-0 pointer-events-none z-0"
+    style="background:radial-gradient(circle at 50% 0%, #1a2e2c 0%, #121616 70%)"></div>
+
+  <div class="flex min-h-screen relative z-10">
+
+    <!-- Desktop Sidebar -->
+    <aside class="hidden lg:flex w-72 sticky top-0 h-screen flex-col border-l border-white/5
+      bg-[#111817]/95 backdrop-blur-sm z-50">
+      <div class="flex flex-col h-full justify-between p-6">
+        <div class="flex flex-col gap-6">
+          <!-- Logo -->
+          <div class="flex items-center gap-3 mb-2">
+            <div class="w-10 h-10 rounded-full bg-primary/20 border border-primary/30
+              flex items-center justify-center">
+              <span class="material-symbols-outlined text-primary-light text-xl">mosque</span>
+            </div>
+            <div>
+              <h1 class="text-white text-base font-serif font-bold">ديوان الصوفية</h1>
+              <p class="text-[#9db8b6] text-xs">رحلة في الشعر العرفاني</p>
+            </div>
+          </div>
+          <!-- Nav -->
+          <nav class="flex flex-col gap-1.5">
+            <a href="../index.html"
+              class="flex items-center gap-4 px-4 py-3 rounded-xl hover:bg-white/5
+                transition-colors group">
+              <span class="material-symbols-outlined text-[#9db8b6] group-hover:text-white">home</span>
+              <span class="text-[#9db8b6] text-sm font-medium group-hover:text-white">الرئيسية</span>
+            </a>
+            <a href="poems.html"
+              class="flex items-center gap-4 px-4 py-3 rounded-xl bg-primary/15
+                border border-primary/20 shadow-sm">
+              <span class="material-symbols-outlined text-primary-light">auto_stories</span>
+              <span class="text-white text-sm font-medium">كل القصائد</span>
+            </a>
+            <button data-category="Ilahiyat"
+              class="flex items-center gap-4 px-4 py-3 rounded-xl hover:bg-white/5
+                transition-colors group w-full text-right">
+              <span class="material-symbols-outlined text-[#9db8b6] group-hover:text-white">auto_awesome</span>
+              <span class="text-[#9db8b6] text-sm font-medium group-hover:text-white">إلهيات</span>
+            </button>
+            <button data-category="Nabawiyat"
+              class="flex items-center gap-4 px-4 py-3 rounded-xl hover:bg-white/5
+                transition-colors group w-full text-right">
+              <span class="material-symbols-outlined text-[#9db8b6] group-hover:text-white">mosque</span>
+              <span class="text-[#9db8b6] text-sm font-medium group-hover:text-white">نبويات</span>
+            </button>
+            <button data-category="Hadra"
+              class="flex items-center gap-4 px-4 py-3 rounded-xl hover:bg-white/5
+                transition-colors group w-full text-right">
+              <span class="material-symbols-outlined text-[#9db8b6] group-hover:text-white">groups</span>
+              <span class="text-[#9db8b6] text-sm font-medium group-hover:text-white">حضرة</span>
+            </button>
+            <button data-category="Mufrad"
+              class="flex items-center gap-4 px-4 py-3 rounded-xl hover:bg-white/5
+                transition-colors group w-full text-right">
+              <span class="material-symbols-outlined text-[#9db8b6] group-hover:text-white">person</span>
+              <span class="text-[#9db8b6] text-sm font-medium group-hover:text-white">مفرد</span>
+            </button>
+          </nav>
+          <!-- Lead-only add button -->
+          <div class="lead-only hidden mt-2">
+            <a id="addPoemBtn" href="add-poem.html"
+              class="flex items-center gap-3 px-4 py-3 rounded-xl bg-primary/20
+                border border-primary/30 hover:bg-primary/30 transition-colors">
+              <span class="material-symbols-outlined text-primary-light">add_circle</span>
+              <span class="text-primary-light text-sm font-bold">إضافة قصيدة جديدة</span>
+            </a>
+          </div>
+        </div>
+        <!-- Bottom nav -->
+        <div class="flex flex-col gap-1 border-t border-white/5 pt-4">
+          <a href="waslat.html"
+            class="flex items-center gap-4 px-4 py-3 rounded-xl hover:bg-white/5 transition-colors group">
+            <span class="material-symbols-outlined text-[#9db8b6] group-hover:text-white">queue_music</span>
+            <span class="text-[#9db8b6] text-sm font-medium group-hover:text-white">الوصلات</span>
+          </a>
+          <a href="../login.html" id="logoutSideBtn"
+            class="flex items-center gap-4 px-4 py-3 rounded-xl hover:bg-white/5 transition-colors group"
+            onclick="localStorage.removeItem('divan_token');localStorage.removeItem('divan_user')">
+            <span class="material-symbols-outlined text-[#9db8b6] group-hover:text-white">logout</span>
+            <span class="text-[#9db8b6] text-sm font-medium group-hover:text-white">خروج</span>
+          </a>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main content -->
+    <main class="flex-1 flex flex-col relative w-full">
+
+      <!-- Mobile header -->
+      <div class="lg:hidden flex items-center justify-between p-4 glass-header sticky top-0 z-40
+        border-b border-white/5">
+        <div class="flex items-center gap-3">
+          <span class="material-symbols-outlined text-primary-light text-xl">mosque</span>
+          <span class="font-serif font-bold text-lg">ديوان الصوفية</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <div class="lead-only hidden">
+            <a href="add-poem.html" class="p-2 rounded-full hover:bg-white/10 transition-colors
+              text-[#9db8b6] hover:text-primary-light" title="إضافة قصيدة">
+              <span class="material-symbols-outlined text-xl">add</span>
+            </a>
+          </div>
+          <button id="mobileMenuBtn" class="p-2 rounded-full hover:bg-white/10 transition-colors">
+            <span class="material-symbols-outlined">menu</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile menu drawer -->
+      <div id="mobileMenu" class="lg:hidden hidden fixed inset-0 z-50">
+        <div class="absolute inset-0 bg-black/60" id="mobileMenuOverlay"></div>
+        <div class="absolute right-0 top-0 bottom-0 w-72 bg-[#111817] border-l border-white/10
+          p-6 flex flex-col gap-4 overflow-y-auto">
+          <div class="flex items-center justify-between mb-2">
+            <span class="font-serif font-bold text-lg">القائمة</span>
+            <button id="closeMobileMenu" class="p-2 rounded-full hover:bg-white/10">
+              <span class="material-symbols-outlined">close</span>
+            </button>
+          </div>
+          <nav class="flex flex-col gap-1.5">
+            <a href="../index.html" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/5">
+              <span class="material-symbols-outlined text-[#9db8b6]">home</span>
+              <span class="text-[#9db8b6] text-sm font-medium">الرئيسية</span>
+            </a>
+            <button data-category="Ilahiyat" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/5 w-full text-right">
+              <span class="material-symbols-outlined text-[#9db8b6]">auto_awesome</span>
+              <span class="text-[#9db8b6] text-sm font-medium">إلهيات</span>
+            </button>
+            <button data-category="Nabawiyat" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/5 w-full text-right">
+              <span class="material-symbols-outlined text-[#9db8b6]">mosque</span>
+              <span class="text-[#9db8b6] text-sm font-medium">نبويات</span>
+            </button>
+            <button data-category="Hadra" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/5 w-full text-right">
+              <span class="material-symbols-outlined text-[#9db8b6]">groups</span>
+              <span class="text-[#9db8b6] text-sm font-medium">حضرة</span>
+            </button>
+            <button data-category="Mufrad" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/5 w-full text-right">
+              <span class="material-symbols-outlined text-[#9db8b6]">person</span>
+              <span class="text-[#9db8b6] text-sm font-medium">مفرد</span>
+            </button>
+            <a href="waslat.html" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/5">
+              <span class="material-symbols-outlined text-[#9db8b6]">queue_music</span>
+              <span class="text-[#9db8b6] text-sm font-medium">الوصلات</span>
+            </a>
+            <a href="../login.html" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/5"
+              onclick="localStorage.removeItem('divan_token');localStorage.removeItem('divan_user')">
+              <span class="material-symbols-outlined text-[#9db8b6]">logout</span>
+              <span class="text-[#9db8b6] text-sm font-medium">خروج</span>
+            </a>
+          </nav>
+        </div>
+      </div>
+
+      <div class="flex-1 overflow-y-auto">
+        <div class="mx-auto w-full max-w-3xl px-4 py-8 md:px-8 md:py-10 pb-24 lg:pb-10">
+
+          <!-- Page header -->
+          <header class="mb-8 flex flex-col gap-3 relative">
+            <div class="absolute -top-8 -right-8 w-32 h-32 bg-primary/10 rounded-full
+              blur-3xl pointer-events-none"></div>
+            <div class="flex items-start justify-between">
+              <div>
+                <h1 class="text-white text-3xl md:text-4xl font-serif font-bold relative z-10">
+                  قائمة القصائد
+                </h1>
+                <p class="text-[#9db8b6] text-sm mt-1 relative z-10">
+                  <span id="poemsCount" class="font-bold text-primary-light"></span>
+                </p>
+              </div>
+            </div>
+          </header>
+
+          <!-- Search bar -->
+          <div class="mb-6 relative">
+            <form id="searchForm">
+              <div class="relative">
+                <div class="absolute right-4 top-1/2 -translate-y-1/2 text-[#9db8b6] pointer-events-none">
+                  <span class="material-symbols-outlined text-xl">search</span>
+                </div>
+                <input id="searchInput" type="text"
+                  class="w-full bg-[#1c2626] border border-[#3c5351] text-white rounded-2xl
+                    px-4 py-3.5 pr-12 focus:outline-none focus:border-primary-light focus:ring-1
+                    focus:ring-primary-light transition-all placeholder:text-[#9db8b6]/50 text-base"
+                  placeholder="ابحث في القصائد..."
+                  autocomplete="off"
+                >
+              </div>
+            </form>
+          </div>
+
+          <!-- Filters row -->
+          <div class="flex flex-row gap-4 mb-6 sticky top-0 lg:relative z-30 pt-2 pb-3 -mx-4 px-4
+            glass-header lg:bg-transparent lg:backdrop-filter-none transition-all">
+            <!-- Maqam filter -->
+            <div class="relative flex-1 min-w-[130px]">
+              <label class="block text-[#9db8b6] text-xs font-medium mb-1.5 px-1">المقام</label>
+              <div class="relative">
+                <select id="maqamFilter"
+                  class="w-full appearance-none bg-[#1c2626] border border-[#3c5351] text-white
+                    rounded-xl px-4 py-3 pr-10 focus:outline-none focus:border-primary-light
+                    transition-all text-sm cursor-pointer">
+                  <option value="">الكل</option>
+                </select>
+                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-[#9db8b6]">
+                  <span class="material-symbols-outlined text-lg">music_note</span>
+                </div>
+              </div>
+            </div>
+            <!-- Poet filter -->
+            <div class="relative flex-1 min-w-[130px]">
+              <label class="block text-[#9db8b6] text-xs font-medium mb-1.5 px-1">الشاعر</label>
+              <div class="relative">
+                <select id="poetFilter"
+                  class="w-full appearance-none bg-[#1c2626] border border-[#3c5351] text-white
+                    rounded-xl px-4 py-3 pr-10 focus:outline-none focus:border-primary-light
+                    transition-all text-sm cursor-pointer">
+                  <option value="">الكل</option>
+                </select>
+                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-[#9db8b6]">
+                  <span class="material-symbols-outlined text-lg">person_search</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Category chips -->
+          <div class="flex flex-wrap gap-2 mb-6">
+            <button data-category="Ilahiyat"
+              class="px-4 py-2 rounded-full bg-[#1c2626] border border-[#3c5351] text-[#9db8b6]
+                text-sm font-medium hover:border-primary-light hover:text-white transition-all
+                active-category:bg-primary/20 active-category:border-primary-light active-category:text-primary-light">
+              إلهيات
+            </button>
+            <button data-category="Nabawiyat"
+              class="px-4 py-2 rounded-full bg-[#1c2626] border border-[#3c5351] text-[#9db8b6]
+                text-sm font-medium hover:border-primary-light hover:text-white transition-all">
+              نبويات
+            </button>
+            <button data-category="Hadra"
+              class="px-4 py-2 rounded-full bg-[#1c2626] border border-[#3c5351] text-[#9db8b6]
+                text-sm font-medium hover:border-primary-light hover:text-white transition-all">
+              حضرة
+            </button>
+            <button data-category="Mufrad"
+              class="px-4 py-2 rounded-full bg-[#1c2626] border border-[#3c5351] text-[#9db8b6]
+                text-sm font-medium hover:border-primary-light hover:text-white transition-all">
+              مفرد
+            </button>
+          </div>
+
+          <!-- Poems list -->
+          <div id="poemsContainer" class="flex flex-col gap-4">
+            <!-- Skeleton loaders -->
+            <div class="glass-card rounded-2xl p-5"><div class="skeleton h-24 rounded-xl"></div></div>
+            <div class="glass-card rounded-2xl p-5"><div class="skeleton h-24 rounded-xl"></div></div>
+            <div class="glass-card rounded-2xl p-5"><div class="skeleton h-24 rounded-xl"></div></div>
+          </div>
+
+          <!-- Pagination -->
+          <div id="pagination" class="mt-8"></div>
+
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Mobile bottom nav -->
+  <nav class="bottom-nav lg:hidden">
+    <a href="../index.html" class="bottom-nav-item">
+      <span class="material-symbols-outlined">home</span>
+      الرئيسية
+    </a>
+    <a href="poems.html" class="bottom-nav-item active">
+      <span class="material-symbols-outlined">auto_stories</span>
+      الديوان
+    </a>
+    <a href="current-poem.html" class="bottom-nav-item">
+      <span class="material-symbols-outlined">menu_book</span>
+      حالية
+    </a>
+    <a href="waslat.html" class="bottom-nav-item">
+      <span class="material-symbols-outlined">queue_music</span>
+      الوصلات
+    </a>
+  </nav>
+
+  <script>
+    // Mobile menu toggle
+    document.getElementById('mobileMenuBtn')?.addEventListener('click', () => {
+      document.getElementById('mobileMenu').classList.remove('hidden');
+    });
+    document.getElementById('closeMobileMenu')?.addEventListener('click', () => {
+      document.getElementById('mobileMenu').classList.add('hidden');
+    });
+    document.getElementById('mobileMenuOverlay')?.addEventListener('click', () => {
+      document.getElementById('mobileMenu').classList.add('hidden');
+    });
+    // Show lead-only elements
+    try {
+      const user = JSON.parse(localStorage.getItem('divan_user'));
+      if (user?.role === 'LeadMunshid') {
+        document.querySelectorAll('.lead-only').forEach(el => el.classList.remove('hidden'));
+      }
+    } catch {}
+  </script>
+  <script type="module" src="../js/pages/poems-list.js"></script>
+</body>
+</html>
