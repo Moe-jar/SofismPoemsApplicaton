@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html class="dark" dir="rtl" lang="ar"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ديوان الصوفية - الرئيسية</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&amp;family=Amiri:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0a5750", // Deep Emerald
+                        "primary-hover": "#0e7066",
+                        "background-light": "#fafaf9",
+                        "background-dark": "#121616", // Deep Charcoal
+                        "glass": "rgba(37, 44, 44, 0.7)",
+                        "glass-border": "rgba(255, 255, 255, 0.08)",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"],
+                        "serif": ["Amiri", "serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "2xl": "2rem",
+                        "full": "9999px"
+                    }
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #121616; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #293837; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0a5750; 
+        }
+        .glass-panel {
+            background: rgba(30, 35, 35, 0.6);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+        .glass-input {
+            background: rgba(20, 24, 24, 0.6);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .text-glow {
+            text-shadow: 0 0 20px rgba(10, 87, 80, 0.5);
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-background-dark text-white font-display selection:bg-primary selection:text-white min-h-screen overflow-x-hidden">
+<div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+<div class="absolute -top-[10%] left-1/2 -translate-x-1/2 w-[80vw] h-[80vw] bg-primary/10 rounded-full blur-[120px] mix-blend-screen opacity-60"></div>
+<div class="absolute top-[30%] right-[10%] w-[40vw] h-[40vw] bg-blue-900/5 rounded-full blur-[100px] mix-blend-overlay"></div>
+<div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/arabesque.png')] opacity-[0.03] z-10"></div>
+</div>
+<div class="relative z-10 flex flex-col items-center min-h-screen">
+<main class="w-full max-w-screen-md mx-auto px-6 py-12 md:py-24">
+<div class="flex flex-col items-center gap-12">
+<header class="flex flex-col items-center text-center gap-4 relative w-full">
+<div class="w-px h-16 bg-gradient-to-b from-transparent via-primary to-transparent mb-4"></div>
+<div class="text-primary/80 mb-2">
+<span class="material-symbols-outlined text-[48px]">mosque</span>
+</div>
+<h1 class="font-serif text-5xl md:text-7xl text-white font-bold tracking-tight text-glow leading-tight">
+                        ديوان الصوفية
+                    </h1>
+<p class="text-[#9db8b6] text-lg md:text-xl font-serif opacity-80 mt-2">
+                        للقراءة والإنشاد الجماعي
+                    </p>
+</header>
+<div class="w-full max-w-[520px] group">
+<div class="relative flex items-center w-full h-16 rounded-2xl glass-input transition-all duration-300 focus-within:ring-1 focus-within:ring-primary/50 focus-within:border-primary/50 shadow-2xl">
+<div class="absolute right-0 flex items-center justify-center h-full w-14 text-[#9db8b6] group-focus-within:text-primary transition-colors pointer-events-none">
+<span class="material-symbols-outlined text-[28px]">search</span>
+</div>
+<input class="w-full h-full bg-transparent border-none text-white placeholder-[#6a7c7a] focus:ring-0 pr-14 pl-6 text-lg font-medium rounded-2xl" placeholder="عن ماذا تبحث في الديوان؟" type="text"/>
+</div>
+</div>
+<div class="w-full max-w-[520px] flex flex-col gap-4">
+<button class="relative w-full group overflow-hidden rounded-2xl transition-all duration-300 hover:scale-[1.01] hover:shadow-2xl hover:shadow-primary/20">
+<div class="absolute inset-0 bg-primary opacity-95"></div>
+<div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10 mix-blend-overlay"></div>
+<div class="relative flex items-center justify-between p-6 h-24">
+<div class="flex items-center gap-5">
+<div class="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center backdrop-blur-sm border border-white/10">
+<span class="material-symbols-outlined text-white text-[28px]">menu_book</span>
+</div>
+<div class="flex flex-col items-start text-right">
+<span class="text-white text-xl font-bold">القصيدة الحالية</span>
+<span class="text-white/70 text-sm font-normal">استكمل القراءة من حيث توقفت</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-white/60 group-hover:text-white transition-all transform rotate-180">arrow_back</span>
+</div>
+</button>
+<button class="relative w-full group overflow-hidden rounded-2xl glass-panel transition-all duration-300 hover:bg-[#293837]/80 hover:border-white/10">
+<div class="relative flex items-center justify-between p-6 h-24">
+<div class="flex items-center gap-5">
+<div class="w-12 h-12 rounded-full bg-[#111817] flex items-center justify-center border border-white/5 group-hover:border-primary/30 transition-colors">
+<span class="material-symbols-outlined text-[#9db8b6] group-hover:text-primary transition-colors text-[28px]">queue_music</span>
+</div>
+<div class="flex flex-col items-start text-right">
+<span class="text-white text-xl font-bold group-hover:text-primary-light transition-colors">الوصلة الحالية</span>
+<span class="text-[#9db8b6] text-sm font-normal">نظام الإنشاد الجماعي المنظم</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-[#9db8b6] group-hover:text-white transition-all transform rotate-180">arrow_back</span>
+</div>
+</button>
+<button class="w-full flex items-center justify-center gap-3 p-5 mt-4 rounded-2xl text-[#9db8b6] hover:text-white hover:bg-white/5 transition-all duration-300 border border-white/5 bg-white/[0.02]">
+<span class="text-base font-bold">عرض فهرس الديوان بالكامل</span>
+<span class="material-symbols-outlined text-[24px]">grid_view</span>
+</button>
+</div>
+<div class="w-full max-w-[520px] mt-8 pt-8 border-t border-white/10">
+<p class="text-sm text-[#9db8b6] mb-5 font-medium px-1 flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">auto_awesome</span>
+                        مختارات من الديوان
+                    </p>
+<div class="glass-panel p-5 rounded-2xl flex items-center gap-5 cursor-pointer hover:bg-white/5 transition-colors group">
+<div class="w-14 h-14 rounded-xl bg-gradient-to-br from-primary to-black flex items-center justify-center shrink-0 shadow-lg">
+<span class="font-serif text-2xl text-white font-bold">ح</span>
+</div>
+<div class="flex-1 text-right">
+<h3 class="text-white font-serif text-xl leading-none mb-2 group-hover:text-primary transition-colors">حلاج الأسرار</h3>
+<p class="text-sm text-[#9db8b6] line-clamp-1">يا لائمي في هواه... كف الملام</p>
+</div>
+<button class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all text-[#9db8b6] shadow-inner">
+<span class="material-symbols-outlined text-[24px] translate-x-[1px]">play_arrow</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<footer class="w-full max-w-[520px] py-10 flex justify-center items-center">
+<button class="flex items-center gap-2 px-4 py-2 rounded-full text-white/30 hover:text-white/60 hover:bg-white/5 transition-all">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+<span class="text-xs font-medium uppercase tracking-widest">الاعدادات</span>
+</button>
+</footer>
+</div>
+
+</body></html>

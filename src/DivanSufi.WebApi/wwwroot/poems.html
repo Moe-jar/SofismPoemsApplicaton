@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-title-key="catalog">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>فهرس الديوان - ديوان الصوفية</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="/css/design.css">
+</head>
+<body>
+  <div class="page-content">
+    <!-- Top Navigation -->
+    <nav class="nav-top">
+      <div class="nav-actions">
+        <button id="backBtn" class="btn btn-icon">
+          <span class="material-symbols-outlined">arrow_back</span>
+        </button>
+      </div>
+      <h1 class="nav-title" data-i18n="catalog">فهرس الديوان</h1>
+      <div class="nav-actions">
+        <!-- Space for future actions -->
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Search Bar -->
+      <div class="search-bar">
+        <input 
+          type="text" 
+          id="searchInput" 
+          class="form-control" 
+          data-i18n-placeholder="search"
+          placeholder="بحث في القصائد..."
+        >
+        <span class="search-icon material-symbols-outlined">search</span>
+      </div>
+
+      <!-- Filters -->
+      <div class="filter-bar">
+        <div class="filter-item">
+          <select id="poetSelect" class="form-control">
+            <option value="">جميع الشعراء</option>
+          </select>
+        </div>
+        <div class="filter-item">
+          <select id="maqamSelect" class="form-control">
+            <option value="">جميع المقامات</option>
+          </select>
+        </div>
+        <div class="filter-item">
+          <select id="categorySelect" class="form-control">
+            <option value="" data-i18n="all">الكل</option>
+            <option value="Ilahiyyat" data-i18n="Ilahiyyat">إلهيات</option>
+            <option value="Nabawiyyat" data-i18n="Nabawiyyat">نبويات</option>
+            <option value="Mufrad" data-i18n="Mufrad">مفرد</option>
+            <option value="Hadra" data-i18n="Hadra">حضرة</option>
+          </select>
+        </div>
+        <div class="filter-item">
+          <select id="sortSelect" class="form-control">
+            <option value="newest" data-i18n="sortNewest">الأحدث</option>
+            <option value="oldest" data-i18n="sortOldest">الأقدم</option>
+            <option value="title" data-i18n="sortTitle">العنوان</option>
+            <option value="poet" data-i18n="sortPoet">الشاعر</option>
+          </select>
+        </div>
+        <div class="filter-item">
+          <button id="clearFiltersBtn" class="btn btn-secondary btn-block">
+            <span class="material-symbols-outlined">clear_all</span>
+            <span data-i18n="clearFilters">إزالة المرشحات</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Results Count -->
+      <div id="resultsCount" class="text-sm text-muted" style="margin-bottom: 1rem;"></div>
+
+      <!-- Poems Grid -->
+      <div id="poemsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <!-- Poems will be loaded here -->
+      </div>
+
+      <!-- Load More Button -->
+      <div style="text-align: center; margin-top: 2rem;">
+        <button id="loadMoreBtn" class="btn btn-secondary" style="display: none;">
+          <span data-i18n="loadMore">تحميل المزيد</span>
+        </button>
+      </div>
+    </main>
+
+    <!-- Bottom Navigation -->
+    <div id="nav"></div>
+  </div>
+
+  <script type="module" src="/js/pages/poems.js"></script>
+</body>
+</html>

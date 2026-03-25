@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+
+<html class="dark" dir="rtl" lang="ar"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>إضافة قصيدة جديدة | ديوان الصوفية</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;family=Amiri:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#218362",
+                        "primary-dark": "#1a6b50",
+                        "primary-light": "#2da37a",
+                        "background-light": "#f0f5f3",
+                        "background-dark": "#121715",
+                        "surface-dark": "#1d2522",
+                        "glass": "rgba(255, 255, 255, 0.03)",
+                        "glass-border": "rgba(255, 255, 255, 0.08)"
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"],
+                        "serif": ["Amiri", "serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "2xl": "2rem",
+                        "full": "9999px"
+                    },
+                    boxShadow: {
+                        "glass": "0 8px 32px 0 rgba(0, 0, 0, 0.3)",
+                        "glow": "0 0 20px rgba(33, 131, 98, 0.3)"
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for poetry text area */
+        textarea::-webkit-scrollbar {
+            width: 8px;
+        }
+        textarea::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.02); 
+        }
+        textarea::-webkit-scrollbar-thumb {
+            background: rgba(33, 131, 98, 0.4); 
+            border-radius: 4px;
+        }
+        textarea::-webkit-scrollbar-thumb:hover {
+            background: rgba(33, 131, 98, 0.6); 
+        }
+
+        .glass-panel {
+            background: rgba(29, 37, 34, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        /* Subtle background pattern animation */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .floating-bg {
+            animation: float 8s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="bg-background-dark text-white font-display overflow-x-hidden min-h-screen relative selection:bg-primary selection:text-white">
+<!-- Abstract Background Elements -->
+<div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+<div class="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-primary/10 rounded-full blur-[120px] floating-bg"></div>
+<div class="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-[#0F3D2E]/20 rounded-full blur-[100px] floating-bg" style="animation-delay: 2s;"></div>
+<!-- Geometric Pattern Overlay (Subtle) -->
+<div class="absolute inset-0 opacity-[0.03]" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+</div>
+<div class="relative z-10 flex flex-col h-full min-h-screen">
+<!-- Header -->
+<header class="flex items-center justify-between border-b border-white/5 px-6 py-4 lg:px-40 backdrop-blur-md sticky top-0 z-50 bg-[#121715]/80">
+<div class="flex items-center gap-4">
+<a class="text-white/80 hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined text-3xl">arrow_forward</span>
+</a>
+<div class="h-8 w-[1px] bg-white/10 mx-2"></div>
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-primary/20 flex items-center justify-center text-primary border border-primary/30">
+<span class="material-symbols-outlined text-lg">history_edu</span>
+</div>
+<h1 class="text-white text-xl lg:text-2xl font-bold font-serif tracking-wide">ديوان الصوفية</h1>
+</div>
+</div>
+<div class="hidden md:flex items-center gap-6">
+<div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10">
+<div class="w-2 h-2 rounded-full bg-primary animate-pulse"></div>
+<span class="text-xs text-white/70 font-medium">مسودة محفوظة</span>
+</div>
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-10 border-2 border-primary/30 shadow-glow" data-alt="User profile avatar showing a silhouette or abstract spiritual pattern" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB59VcxEdFGPrbBbt7LmsgcNBjkGJFSUUiiLGX8AQO8CZ4X9EFW7N8KdzQK43F0In2xt_7XX2_c9ycXjLZGFKlrgc-g85o2Rfc-uZaZFJicf9REdkVDaU9PJD5nXCIwnKLlbn87-WXO4ZUvbsKUJSq7d52yy8cNigsImvEYOWkS2LKU54pJqsQDjmCL5aW7CSIuqkyrsTVz-v4UpiNOiIERX-KUQ2KwYvoHwGf90GGXL8nEe7ICfo7iyMbO75yJrHAPtEUlvKHyeMsm");'></div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 flex justify-center py-8 px-4 sm:px-6 lg:px-8">
+<div class="w-full max-w-[800px] flex flex-col gap-8">
+<!-- Page Title Area -->
+<div class="text-center space-y-2 mb-4">
+<h2 class="text-white text-3xl md:text-4xl font-serif font-bold leading-tight">إضافة قصيدة جديدة</h2>
+<p class="text-[#a1b5ae] text-base font-normal max-w-lg mx-auto">شاركنا نفحاتك الروحية وأضف جوهرة جديدة إلى عقد ديوان الصوفية</p>
+</div>
+<!-- Glass Form Card -->
+<form class="glass-panel rounded-2xl p-6 md:p-10 shadow-glass flex flex-col gap-8 relative overflow-hidden">
+<!-- Decor shine effect -->
+<div class="absolute top-0 right-0 w-full h-[1px] bg-gradient-to-l from-transparent via-primary/50 to-transparent opacity-50"></div>
+<!-- Row 1: Poem Title -->
+<div class="flex flex-col gap-2">
+<label class="text-white/90 text-sm font-bold flex items-center gap-2" for="poem-title">
+<span class="material-symbols-outlined text-primary text-lg">edit_note</span>
+                            عنوان القصيدة
+                        </label>
+<input class="w-full bg-[#121715] border border-[#3f504a] text-white placeholder:text-[#a1b5ae]/50 rounded-xl px-4 py-3.5 focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-all duration-300 hover:border-[#5a6e66]" id="poem-title" placeholder="مثل: البردة، نهج البردة..." type="text"/>
+</div>
+<!-- Row 2: Grid for Dropdowns -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Poet Name -->
+<div class="flex flex-col gap-2">
+<label class="text-white/90 text-sm font-bold flex items-center gap-2" for="poet-name">
+<span class="material-symbols-outlined text-primary text-lg">person_book</span>
+                                اسم الشاعر
+                            </label>
+<div class="relative">
+<select class="w-full appearance-none bg-[#121715] border border-[#3f504a] text-white rounded-xl px-4 py-3.5 pr-10 focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none cursor-pointer transition-all duration-300 hover:border-[#5a6e66]" id="poet-name">
+<option disabled="" selected="" value="">اختر الشاعر...</option>
+<option value="ibn-arabi">محيي الدين بن عربي</option>
+<option value="rumi">جلال الدين الرومي</option>
+<option value="al-hallaj">الحلاج</option>
+<option value="ibn-alfarid">ابن الفارض</option>
+<option value="other">شاعر آخر...</option>
+</select>
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[#a1b5ae] pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- Maqam -->
+<div class="flex flex-col gap-2">
+<label class="text-white/90 text-sm font-bold flex items-center gap-2" for="maqam">
+<span class="material-symbols-outlined text-primary text-lg">music_note</span>
+                                المقام الموسيقي
+                            </label>
+<div class="relative">
+<select class="w-full appearance-none bg-[#121715] border border-[#3f504a] text-white rounded-xl px-4 py-3.5 pr-10 focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none cursor-pointer transition-all duration-300 hover:border-[#5a6e66]" id="maqam">
+<option disabled="" selected="" value="">اختر المقام...</option>
+<option value="rast">راست</option>
+<option value="bayati">بياتي</option>
+<option value="sika">سيكا</option>
+<option value="nahawand">نهاوند</option>
+<option value="hijaz">حجاز</option>
+</select>
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[#a1b5ae] pointer-events-none">expand_more</span>
+</div>
+</div>
+</div>
+<!-- Row 3: Category -->
+<div class="flex flex-col gap-2">
+<label class="text-white/90 text-sm font-bold flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-primary text-lg">category</span>
+                            التصنيف
+                        </label>
+<div class="flex flex-wrap gap-3">
+<label class="cursor-pointer group">
+<input class="peer sr-only" name="category" type="radio" value="ilahiyat"/>
+<div class="px-5 py-2.5 rounded-lg border border-[#3f504a] bg-[#121715] text-[#a1b5ae] peer-checked:bg-primary/20 peer-checked:border-primary peer-checked:text-primary transition-all duration-200 group-hover:bg-[#1d2522]">
+                                    إلهيات
+                                </div>
+</label>
+<label class="cursor-pointer group">
+<input class="peer sr-only" name="category" type="radio" value="nabawiyat"/>
+<div class="px-5 py-2.5 rounded-lg border border-[#3f504a] bg-[#121715] text-[#a1b5ae] peer-checked:bg-primary/20 peer-checked:border-primary peer-checked:text-primary transition-all duration-200 group-hover:bg-[#1d2522]">
+                                    نبويات
+                                </div>
+</label>
+<label class="cursor-pointer group">
+<input class="peer sr-only" name="category" type="radio" value="hadra"/>
+<div class="px-5 py-2.5 rounded-lg border border-[#3f504a] bg-[#121715] text-[#a1b5ae] peer-checked:bg-primary/20 peer-checked:border-primary peer-checked:text-primary transition-all duration-200 group-hover:bg-[#1d2522]">
+                                    حضرة
+                                </div>
+</label>
+<label class="cursor-pointer group">
+<input class="peer sr-only" name="category" type="radio" value="mufrad"/>
+<div class="px-5 py-2.5 rounded-lg border border-[#3f504a] bg-[#121715] text-[#a1b5ae] peer-checked:bg-primary/20 peer-checked:border-primary peer-checked:text-primary transition-all duration-200 group-hover:bg-[#1d2522]">
+                                    مفرد
+                                </div>
+</label>
+</div>
+</div>
+<!-- Row 4: Poem Text Area -->
+<div class="flex flex-col gap-2 flex-1">
+<div class="flex justify-between items-end">
+<label class="text-white/90 text-sm font-bold flex items-center gap-2" for="poem-text">
+<span class="material-symbols-outlined text-primary text-lg">format_quote</span>
+                                نص القصيدة
+                            </label>
+<span class="text-xs text-[#a1b5ae] bg-white/5 px-2 py-1 rounded">تنسيق تلقائي</span>
+</div>
+<div class="relative group/textarea">
+<textarea class="w-full bg-[#121715] border border-[#3f504a] text-white placeholder:text-[#a1b5ae]/30 rounded-xl px-6 py-6 focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none font-serif text-lg leading-[2.5] text-center resize-y transition-all duration-300 hover:border-[#5a6e66]" id="poem-text" placeholder="أمن تذكر جيران بذي سلم
+مزجت دمعاً جرى من مقلة بدم
+
+أم هبت الريح من تلقاء كاظمة
+وأومض البرق في الظلماء من إضم" rows="12"></textarea>
+<!-- Decorative corner accents for poetry feel -->
+<div class="absolute top-2 right-2 text-[#3f504a] group-focus-within/textarea:text-primary/50 transition-colors pointer-events-none">
+<svg fill="currentColor" height="20" viewbox="0 0 24 24" width="20"><path d="M5 5h6v2H7v4H5V5z"></path></svg>
+</div>
+<div class="absolute top-2 left-2 text-[#3f504a] group-focus-within/textarea:text-primary/50 transition-colors pointer-events-none transform -scale-x-100">
+<svg fill="currentColor" height="20" viewbox="0 0 24 24" width="20"><path d="M5 5h6v2H7v4H5V5z"></path></svg>
+</div>
+<div class="absolute bottom-2 right-2 text-[#3f504a] group-focus-within/textarea:text-primary/50 transition-colors pointer-events-none transform -scale-y-100">
+<svg fill="currentColor" height="20" viewbox="0 0 24 24" width="20"><path d="M5 5h6v2H7v4H5V5z"></path></svg>
+</div>
+<div class="absolute bottom-2 left-2 text-[#3f504a] group-focus-within/textarea:text-primary/50 transition-colors pointer-events-none transform -scale-x-100 -scale-y-100">
+<svg fill="currentColor" height="20" viewbox="0 0 24 24" width="20"><path d="M5 5h6v2H7v4H5V5z"></path></svg>
+</div>
+</div>
+<p class="text-xs text-[#a1b5ae] mr-1">يرجى التأكد من صحة التشكيل لضمان دقة القراءة.</p>
+</div>
+<!-- Row 5: Actions -->
+<div class="flex flex-col-reverse md:flex-row items-center gap-4 mt-4 pt-6 border-t border-white/5">
+<button class="w-full md:w-auto px-6 py-3 rounded-xl text-[#a1b5ae] text-sm font-bold hover:text-white hover:bg-white/5 transition-colors" type="button">
+                            إلغاء
+                        </button>
+<div class="flex-1"></div>
+<button class="w-full md:w-auto px-6 py-3 rounded-xl bg-white/5 text-white text-sm font-bold border border-white/10 hover:bg-white/10 transition-colors flex items-center justify-center gap-2" type="button">
+<span class="material-symbols-outlined text-lg">save</span>
+                            حفظ كمسودة
+                        </button>
+<button class="w-full md:w-auto min-w-[160px] bg-gradient-to-r from-primary-dark to-primary text-white font-bold text-sm px-8 py-3 rounded-xl hover:shadow-glow hover:to-primary-light transition-all duration-300 transform active:scale-[0.98] flex items-center justify-center gap-2" type="submit">
+<span class="material-symbols-outlined text-lg">publish</span>
+                            حفظ ونشر
+                        </button>
+</div>
+</form>
+<!-- Footer hint -->
+<div class="text-center pb-8">
+<p class="text-xs text-[#a1b5ae]/60">جميع الحقوق محفوظة © ديوان الصوفية 2024</p>
+</div>
+</div>
+</main>
+</div>
+</body></html>
