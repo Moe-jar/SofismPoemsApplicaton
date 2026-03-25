@@ -5,3 +5,11 @@ obj/
 *.db-wal
 .vs/
 *.user
+
+# Firebase / environment secrets
+.env
+serviceAccountKey.json
+*-serviceAccountKey.json
+firebase-debug.log
+firebase-debug.*.log
+.firebase/
