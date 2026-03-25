@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html class="dark" dir="rtl" lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ديوان الصوفية - الرئيسية</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#0a5750",
+            "primary-light": "#158c82",
+            "primary-hover": "#0e7066",
+            "background-dark": "#121616",
+          },
+          fontFamily: {
+            "display": ["Cairo", "Manrope", "sans-serif"],
+            "serif": ["Amiri", "serif"],
+          },
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="css/design.css">
+</head>
+<body class="bg-[#121616] text-white font-display min-h-screen selection:bg-primary selection:text-white overflow-x-hidden">
+
+  <!-- Background -->
+  <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+    <div class="absolute -top-[10%] left-1/2 -translate-x-1/2 w-[80vw] h-[80vw]
+      bg-primary/10 rounded-full blur-[120px] opacity-60 animate-float"></div>
+    <div class="absolute top-[30%] right-[10%] w-[40vw] h-[40vw]
+      bg-blue-900/5 rounded-full blur-[100px] animate-float-delay"></div>
+    <div class="absolute inset-0 opacity-[0.025] pattern-overlay"></div>
+  </div>
+
+  <div class="relative z-10 flex flex-col items-center min-h-screen">
+    <main class="w-full max-w-screen-md mx-auto px-6 py-12 md:py-20">
+      <div class="flex flex-col items-center gap-10">
+
+        <!-- Header with user info -->
+        <div class="w-full flex items-center justify-between">
+          <div id="userBadgeContainer"></div>
+          <div class="flex items-center gap-3">
+            <a href="pages/poems.html" class="p-2 rounded-full hover:bg-white/5 transition-colors
+              text-[#9db8b6] hover:text-white" title="الديوان">
+              <span class="material-symbols-outlined text-2xl">auto_stories</span>
+            </a>
+            <button id="logoutBtn" class="p-2 rounded-full hover:bg-white/5 transition-colors
+              text-[#9db8b6] hover:text-white" title="خروج">
+              <span class="material-symbols-outlined text-2xl">logout</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Hero title -->
+        <header class="flex flex-col items-center text-center gap-4">
+          <div class="w-px h-12 bg-gradient-to-b from-transparent via-primary-light to-transparent mb-2"></div>
+          <div class="text-primary-light mb-1">
+            <span class="material-symbols-outlined text-[52px]">mosque</span>
+          </div>
+          <h1 class="font-serif text-5xl md:text-7xl text-white font-bold tracking-tight text-glow leading-tight">
+            ديوان الصوفية
+          </h1>
+          <p class="text-[#9db8b6] text-lg md:text-xl font-serif opacity-80 mt-1">
+            للقراءة والإنشاد الجماعي
+          </p>
+        </header>
+
+        <!-- Search bar -->
+        <div class="w-full max-w-[520px] group">
+          <form id="searchForm">
+            <div class="relative flex items-center w-full h-14 rounded-2xl glass-input transition-all
+              duration-300 focus-within:ring-1 focus-within:ring-primary-light/50
+              focus-within:border-primary-light/50 shadow-2xl">
+              <div class="absolute right-0 flex items-center justify-center h-full w-14
+                text-[#9db8b6] group-focus-within:text-primary-light transition-colors pointer-events-none">
+                <span class="material-symbols-outlined text-[26px]">search</span>
+              </div>
+              <input id="searchInput"
+                class="w-full h-full bg-transparent border-none text-white placeholder-[#6a7c7a]
+                  focus:ring-0 pr-14 pl-5 text-base font-medium rounded-2xl focus:outline-none"
+                placeholder="عن ماذا تبحث في الديوان؟"
+                type="text"
+                autocomplete="off"
+              >
+            </div>
+          </form>
+        </div>
+
+        <!-- Main actions -->
+        <div class="w-full max-w-[520px] flex flex-col gap-4">
+
+          <!-- Current Poem (highlighted) -->
+          <a href="pages/current-poem.html"
+            class="relative w-full group overflow-hidden rounded-2xl transition-all duration-300
+              hover:scale-[1.01] hover:shadow-2xl hover:shadow-primary/20 block">
+            <div class="absolute inset-0 bg-primary opacity-95"></div>
+            <div class="relative flex items-center justify-between p-6 h-24">
+              <div class="flex items-center gap-5">
+                <div class="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center
+                  backdrop-blur-sm border border-white/10">
+                  <span class="material-symbols-outlined text-white text-[28px]">menu_book</span>
+                </div>
+                <div class="flex flex-col items-start text-right">
+                  <span class="text-white text-xl font-bold">القصيدة الحالية</span>
+                  <span class="text-white/70 text-sm font-normal">القصيدة المشتركة حالياً</span>
+                </div>
+              </div>
+              <span class="material-symbols-outlined text-white/60 group-hover:text-white
+                transition-all transform rotate-180">arrow_back</span>
+            </div>
+          </a>
+
+          <!-- Current Wasla -->
+          <a href="pages/current-wasla.html"
+            class="relative w-full group overflow-hidden rounded-2xl glass-panel transition-all
+              duration-300 hover:bg-[#293837]/80 hover:border-white/10 block">
+            <div class="relative flex items-center justify-between p-6 h-24">
+              <div class="flex items-center gap-5">
+                <div class="w-12 h-12 rounded-full bg-[#111817] flex items-center justify-center
+                  border border-white/5 group-hover:border-primary/30 transition-colors">
+                  <span class="material-symbols-outlined text-[#9db8b6] group-hover:text-primary-light
+                    transition-colors text-[28px]">queue_music</span>
+                </div>
+                <div class="flex flex-col items-start text-right">
+                  <span class="text-white text-xl font-bold group-hover:text-primary-light transition-colors">
+                    الوصلة الحالية
+                  </span>
+                  <span class="text-[#9db8b6] text-sm font-normal">نظام الإنشاد الجماعي المنظم</span>
+                </div>
+              </div>
+              <span class="material-symbols-outlined text-[#9db8b6] group-hover:text-white
+                transition-all transform rotate-180">arrow_back</span>
+            </div>
+          </a>
+
+          <!-- Browse catalog -->
+          <a href="pages/poems.html"
+            class="w-full flex items-center justify-center gap-3 p-5 rounded-2xl
+              text-[#9db8b6] hover:text-white hover:bg-white/5 transition-all duration-300
+              border border-white/5 bg-white/[0.02] block">
+            <span class="text-base font-bold">عرض فهرس الديوان بالكامل</span>
+            <span class="material-symbols-outlined text-[22px]">grid_view</span>
+          </a>
+
+          <!-- Lead only actions -->
+          <div class="lead-only hidden flex gap-3">
+            <a href="pages/add-poem.html"
+              class="flex-1 flex items-center justify-center gap-2 p-4 rounded-2xl
+                bg-white/5 hover:bg-white/10 border border-white/10 transition-all text-[#9db8b6]
+                hover:text-white">
+              <span class="material-symbols-outlined text-xl">add</span>
+              <span class="font-bold text-sm">إضافة قصيدة</span>
+            </a>
+            <a href="pages/waslat.html"
+              class="flex-1 flex items-center justify-center gap-2 p-4 rounded-2xl
+                bg-white/5 hover:bg-white/10 border border-white/10 transition-all text-[#9db8b6]
+                hover:text-white">
+              <span class="material-symbols-outlined text-xl">playlist_add</span>
+              <span class="font-bold text-sm">الوصلات</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Featured poems -->
+        <div class="w-full max-w-[520px] mt-4 pt-6 border-t border-white/10">
+          <p class="text-sm text-[#9db8b6] mb-4 font-medium px-1 flex items-center gap-2">
+            <span class="material-symbols-outlined text-[18px]">auto_awesome</span>
+            مختارات من الديوان
+          </p>
+          <div id="featuredPoems" class="flex flex-col gap-3">
+            <!-- Skeleton loading -->
+            <div class="glass-panel p-5 rounded-2xl"><div class="skeleton h-16 rounded-xl"></div></div>
+            <div class="glass-panel p-5 rounded-2xl"><div class="skeleton h-16 rounded-xl"></div></div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full max-w-[520px] py-8 flex justify-center items-center mx-auto">
+      <div class="flex items-center gap-4">
+        <a href="pages/waslat.html"
+          class="flex items-center gap-1.5 px-4 py-2 rounded-full text-white/30
+            hover:text-white/60 hover:bg-white/5 transition-all text-xs font-medium uppercase tracking-widest">
+          <span class="material-symbols-outlined text-[18px]">queue_music</span>
+          الوصلات
+        </a>
+        <button id="settingsBtn"
+          class="flex items-center gap-2 px-4 py-2 rounded-full text-white/30
+            hover:text-white/60 hover:bg-white/5 transition-all">
+          <span class="material-symbols-outlined text-[18px]">settings</span>
+          <span class="text-xs font-medium uppercase tracking-widest">الإعدادات</span>
+        </button>
+      </div>
+    </footer>
+  </div>
+
+  <script type="module" src="js/pages/home.js"></script>
+  <script type="module">
+    import { getUser, isLead } from './js/auth.js';
+    // User badge in header
+    const user = getUser();
+    if (user) {
+      const container = document.getElementById('userBadgeContainer');
+      if (container) {
+        const role = user.role === 'LeadMunshid' ? 'منشد رئيسي' : 'منشد';
+        container.innerHTML = `
+          <div class="flex items-center gap-2.5">
+            <div class="w-9 h-9 rounded-full bg-primary/20 border border-primary/30
+              flex items-center justify-center">
+              <span class="material-symbols-outlined text-primary-light text-lg">person</span>
+            </div>
+            <div>
+              <p class="text-white text-sm font-bold leading-none">${user.fullName || user.username}</p>
+              <p class="text-[#9db8b6] text-xs mt-0.5">${role}</p>
+            </div>
+          </div>`;
+      }
+    }
+  </script>
+</body>
+</html>

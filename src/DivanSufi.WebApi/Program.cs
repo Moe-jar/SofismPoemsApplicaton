@@ -19,9 +19,21 @@ builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(policy =>
     {
-        var origins = new List<string> { "http://localhost:5500", "http://127.0.0.1:5500", "http://localhost:3000" };
+        // Allow common frontend dev servers and production hosts
+        var origins = new List<string>
+        {
+            "http://localhost:5500", "http://127.0.0.1:5500",
+            "http://localhost:3000", "http://127.0.0.1:3000",
+            "http://localhost:8080", "http://127.0.0.1:8080",
+            "http://localhost:4200", "http://127.0.0.1:4200",
+        };
         if (builder.Environment.IsDevelopment())
             origins.Add("null"); // allow file:// origins in development only
+
+        // Allow additional origins from configuration (for production deployment)
+        var configOrigins = builder.Configuration.GetSection("AllowedOrigins").Get<string[]>();
+        if (configOrigins?.Length > 0) origins.AddRange(configOrigins);
+
         policy.WithOrigins(origins.ToArray())
               .AllowAnyHeader()
               .AllowAnyMethod()

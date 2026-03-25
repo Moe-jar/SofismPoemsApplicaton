@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html class="dark" dir="rtl" lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>دخول - ديوان الصوفية</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Amiri:wght@400;700&family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#0a5750",
+            "primary-light": "#158c82",
+            "primary-dark": "#052e2a",
+            "background-dark": "#121616",
+          },
+          fontFamily: {
+            "display": ["Cairo", "Manrope", "sans-serif"],
+            "serif": ["Amiri", "serif"],
+          },
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="css/design.css">
+  <style>
+    .glass-input {
+      background: rgba(20, 26, 26, 0.6);
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .glass-input:focus {
+      outline: none;
+      border-color: #158c82;
+      box-shadow: 0 0 0 2px rgba(21,140,130,0.2);
+    }
+  </style>
+</head>
+<body class="bg-[#121616] text-white font-display min-h-screen flex items-center justify-center
+  selection:bg-primary selection:text-white overflow-x-hidden">
+
+  <!-- Background orbs -->
+  <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+    <div class="absolute -top-[20%] left-1/2 -translate-x-1/2 w-[70vw] h-[70vw]
+      bg-primary/10 rounded-full blur-[120px] opacity-60 animate-float"></div>
+    <div class="absolute bottom-[10%] right-[5%] w-[40vw] h-[40vw]
+      bg-[#0f3d2e]/20 rounded-full blur-[100px] animate-float-delay"></div>
+  </div>
+
+  <main class="relative z-10 w-full max-w-md mx-auto px-6 py-12">
+    <!-- Logo -->
+    <header class="text-center mb-10">
+      <div class="w-px h-16 bg-gradient-to-b from-transparent via-primary-light to-transparent
+        mx-auto mb-6"></div>
+      <div class="text-primary-light mb-3">
+        <span class="material-symbols-outlined text-5xl">mosque</span>
+      </div>
+      <h1 class="font-serif text-4xl font-bold text-white text-glow mb-2">ديوان الصوفية</h1>
+      <p class="text-[#9db8b6] text-base font-serif">للقراءة والإنشاد الجماعي</p>
+    </header>
+
+    <!-- Login card -->
+    <div class="glass-panel rounded-2xl p-8 shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
+      <h2 class="text-xl font-bold text-white mb-6 text-center">تسجيل الدخول</h2>
+
+      <!-- Error message -->
+      <div id="errorMsg" class="hidden mb-4 p-4 rounded-xl bg-red-500/15 border border-red-500/30
+        text-red-400 text-sm text-center"></div>
+
+      <form id="loginForm" class="flex flex-col gap-5" novalidate>
+        <!-- Username -->
+        <div class="flex flex-col gap-1.5">
+          <label class="text-white/80 text-sm font-semibold flex items-center gap-2" for="username">
+            <span class="material-symbols-outlined text-primary-light text-base">person</span>
+            اسم المستخدم
+          </label>
+          <input
+            id="username"
+            type="text"
+            autocomplete="username"
+            placeholder="اسم المستخدم"
+            class="glass-input w-full rounded-xl px-4 py-3.5 text-white placeholder:text-white/30
+              bg-[#121616] border border-[#3f504a] focus:border-primary-light focus:ring-1
+              focus:ring-primary-light focus:outline-none transition-all"
+          >
+        </div>
+
+        <!-- Password -->
+        <div class="flex flex-col gap-1.5">
+          <label class="text-white/80 text-sm font-semibold flex items-center gap-2" for="password">
+            <span class="material-symbols-outlined text-primary-light text-base">lock</span>
+            كلمة المرور
+          </label>
+          <div class="relative">
+            <input
+              id="password"
+              type="password"
+              autocomplete="current-password"
+              placeholder="كلمة المرور"
+              class="glass-input w-full rounded-xl px-4 py-3.5 text-white placeholder:text-white/30
+                bg-[#121616] border border-[#3f504a] focus:border-primary-light focus:ring-1
+                focus:ring-primary-light focus:outline-none transition-all"
+            >
+            <button type="button" id="togglePassword"
+              class="absolute left-3 top-1/2 -translate-y-1/2 text-[#9db8b6] hover:text-white
+                transition-colors p-1"
+              aria-label="إظهار/إخفاء كلمة المرور">
+              <span class="material-symbols-outlined text-lg">visibility</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Submit -->
+        <button id="submitBtn" type="submit"
+          class="w-full mt-2 bg-gradient-to-r from-primary-dark to-primary text-white font-bold
+            py-4 rounded-xl hover:shadow-[0_0_20px_rgba(21,140,130,0.4)] hover:to-primary-light
+            transition-all duration-300 active:scale-[0.98] flex items-center justify-center gap-2">
+          <span class="material-symbols-outlined text-lg">login</span>
+          دخول
+        </button>
+      </form>
+
+      <!-- Default credentials hint (development) -->
+      <div class="mt-6 pt-5 border-t border-white/5 text-center">
+        <p class="text-[#9db8b6] text-xs mb-2">مستخدمون للتجربة:</p>
+        <div class="text-xs text-[#9db8b6]/70 space-y-1">
+          <p><code class="text-primary-light">lead</code> / lead123 — منشد رئيسي</p>
+          <p><code class="text-primary-light">ahmad</code> / ahmad123 — منشد</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <style>@keyframes spin{to{transform:rotate(360deg)}}</style>
+  <script type="module" src="js/pages/login.js"></script>
+  <script>
+    // Toggle password visibility
+    document.getElementById('togglePassword')?.addEventListener('click', () => {
+      const input = document.getElementById('password');
+      const icon = document.querySelector('#togglePassword .material-symbols-outlined');
+      if (input.type === 'password') {
+        input.type = 'text';
+        if (icon) icon.textContent = 'visibility_off';
+      } else {
+        input.type = 'password';
+        if (icon) icon.textContent = 'visibility';
+      }
+    });
+  </script>
+</body>
+</html>

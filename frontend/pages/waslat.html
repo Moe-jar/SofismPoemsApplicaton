@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html class="dark" dir="rtl" lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>الوصلات - ديوان الصوفية</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&family=Amiri:wght@400;700&family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#0a5750",
+            "primary-light": "#158c82",
+            "background-dark": "#121616",
+          },
+          fontFamily: {
+            "display": ["Cairo", "Manrope", "sans-serif"],
+            "serif": ["Amiri", "serif"],
+          },
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="../css/design.css">
+</head>
+<body class="bg-[#121616] text-white font-display min-h-screen selection:bg-primary
+  selection:text-white overflow-x-hidden">
+
+  <!-- Background -->
+  <div class="fixed inset-0 pointer-events-none z-0"
+    style="background:radial-gradient(circle at 50% 0%, #1a2e2c 0%, #121616 70%)"></div>
+
+  <!-- Header -->
+  <header class="glass-header sticky top-0 z-50 border-b border-white/5 px-4 py-4 md:px-8">
+    <div class="max-w-3xl mx-auto flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <a href="../index.html" class="p-2 rounded-full hover:bg-white/5 transition-colors
+          text-[#9db8b6] hover:text-white">
+          <span class="material-symbols-outlined">arrow_forward</span>
+        </a>
+        <div>
+          <h1 class="text-white font-bold text-lg">الوصلات</h1>
+          <p class="text-[#9db8b6] text-xs">مجموعات القصائد المنظمة للإنشاد</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-2">
+        <button id="createWaslaBtn" class="lead-only hidden flex items-center gap-2 px-4 py-2.5
+          rounded-xl bg-primary/20 border border-primary/30 text-primary-light
+          hover:bg-primary/30 transition-all text-sm font-bold">
+          <span class="material-symbols-outlined text-lg">add</span>
+          وصلة جديدة
+        </button>
+        <a href="poems.html" class="p-2 rounded-full hover:bg-white/5 transition-colors
+          text-[#9db8b6] hover:text-white" title="الديوان">
+          <span class="material-symbols-outlined">auto_stories</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main class="relative z-10 max-w-3xl mx-auto px-4 py-8 pb-28">
+    <div id="waslatContainer" class="flex flex-col gap-4">
+      <!-- Skeleton -->
+      <div class="glass-card rounded-2xl p-5"><div class="skeleton h-20 rounded-xl"></div></div>
+      <div class="glass-card rounded-2xl p-5"><div class="skeleton h-20 rounded-xl"></div></div>
+      <div class="glass-card rounded-2xl p-5"><div class="skeleton h-20 rounded-xl"></div></div>
+    </div>
+  </main>
+
+  <!-- Wasla detail modal -->
+  <div id="waslaDetailModal"
+    class="hidden fixed inset-0 z-[200] flex items-end md:items-center justify-center"
+    style="background:rgba(0,0,0,0.7);backdrop-filter:blur(4px)">
+    <div class="bg-[#1c2626] border border-white/10 rounded-t-3xl md:rounded-2xl
+      w-full md:max-w-2xl max-h-[85vh] overflow-hidden flex flex-col shadow-2xl">
+      <!-- Modal header -->
+      <div class="flex items-center justify-between p-5 border-b border-white/10">
+        <h3 class="text-white font-bold text-lg">تفاصيل الوصلة</h3>
+        <button id="closeWaslaModal" class="p-2 rounded-full hover:bg-white/10 transition-colors
+          text-[#9db8b6] hover:text-white">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+      <!-- Modal content -->
+      <div id="waslaDetailContainer" class="flex-1 overflow-y-auto p-5"></div>
+    </div>
+  </div>
+
+  <!-- Add poem to wasla modal -->
+  <div id="addPoemModal"
+    class="hidden fixed inset-0 z-[300] flex items-end md:items-center justify-center"
+    style="background:rgba(0,0,0,0.7);backdrop-filter:blur(4px)">
+    <div class="bg-[#1c2626] border border-white/10 rounded-t-3xl md:rounded-2xl
+      w-full md:max-w-xl max-h-[85vh] overflow-hidden flex flex-col shadow-2xl">
+      <div class="flex items-center justify-between p-5 border-b border-white/10">
+        <h3 class="text-white font-bold text-lg">إضافة قصيدة للوصلة</h3>
+        <button id="closeAddPoemModal" class="p-2 rounded-full hover:bg-white/10 transition-colors
+          text-[#9db8b6] hover:text-white">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+      <div class="p-4 border-b border-white/5">
+        <div class="relative">
+          <input id="poemSearchInput" type="text" placeholder="ابحث عن قصيدة..."
+            class="w-full bg-[#111817] border border-[#3c5351] text-white rounded-xl
+              px-4 py-3 pr-10 focus:outline-none focus:border-primary-light transition-all
+              placeholder:text-[#9db8b6]/50">
+          <div class="absolute right-3 top-1/2 -translate-y-1/2 text-[#9db8b6] pointer-events-none">
+            <span class="material-symbols-outlined text-lg">search</span>
+          </div>
+        </div>
+      </div>
+      <div id="poemSearchResults" class="flex-1 overflow-y-auto p-4 flex flex-col gap-2"></div>
+    </div>
+  </div>
+
+  <!-- Create wasla modal -->
+  <div id="createWaslaModal"
+    class="hidden fixed inset-0 z-[300] flex items-end md:items-center justify-center"
+    style="background:rgba(0,0,0,0.7);backdrop-filter:blur(4px)">
+    <div class="bg-[#1c2626] border border-white/10 rounded-t-3xl md:rounded-2xl
+      w-full md:max-w-md shadow-2xl">
+      <div class="flex items-center justify-between p-5 border-b border-white/10">
+        <h3 class="text-white font-bold text-lg">إنشاء وصلة جديدة</h3>
+        <button id="closeCreateWaslaModal" class="p-2 rounded-full hover:bg-white/10 transition-colors
+          text-[#9db8b6] hover:text-white">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+      <form id="createWaslaForm" class="p-5 flex flex-col gap-4">
+        <div class="flex flex-col gap-1.5">
+          <label class="text-white/80 text-sm font-semibold" for="waslaName">اسم الوصلة *</label>
+          <input id="waslaName" type="text" placeholder="مثل: وصلة البردة..."
+            class="w-full bg-[#111817] border border-[#3c5351] text-white rounded-xl
+              px-4 py-3 focus:outline-none focus:border-primary-light transition-all
+              placeholder:text-[#9db8b6]/50">
+        </div>
+        <div class="flex flex-col gap-1.5">
+          <label class="text-white/80 text-sm font-semibold" for="waslaDesc">الوصف (اختياري)</label>
+          <textarea id="waslaDesc" placeholder="وصف الوصلة..." rows="2"
+            class="w-full bg-[#111817] border border-[#3c5351] text-white rounded-xl
+              px-4 py-3 focus:outline-none focus:border-primary-light transition-all
+              placeholder:text-[#9db8b6]/50 resize-none"></textarea>
+        </div>
+        <button type="submit"
+          class="w-full bg-gradient-to-r from-[#052e2a] to-primary text-white font-bold
+            py-3.5 rounded-xl hover:to-primary-light transition-all active:scale-[0.98]
+            flex items-center justify-center gap-2">
+          <span class="material-symbols-outlined text-lg">add</span>
+          إنشاء الوصلة
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Mobile bottom nav -->
+  <nav class="bottom-nav lg:hidden">
+    <a href="../index.html" class="bottom-nav-item">
+      <span class="material-symbols-outlined">home</span>
+      الرئيسية
+    </a>
+    <a href="poems.html" class="bottom-nav-item">
+      <span class="material-symbols-outlined">auto_stories</span>
+      الديوان
+    </a>
+    <a href="current-poem.html" class="bottom-nav-item">
+      <span class="material-symbols-outlined">menu_book</span>
+      حالية
+    </a>
+    <a href="waslat.html" class="bottom-nav-item active">
+      <span class="material-symbols-outlined">queue_music</span>
+      الوصلات
+    </a>
+  </nav>
+
+  <script>
+    try {
+      const user = JSON.parse(localStorage.getItem('divan_user'));
+      if (user?.role === 'LeadMunshid') {
+        document.querySelectorAll('.lead-only').forEach(el => el.classList.remove('hidden'));
+      }
+    } catch {}
+  </script>
+  <script type="module" src="../js/pages/waslat.js"></script>
+</body>
+</html>

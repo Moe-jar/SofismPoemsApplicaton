@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html class="dark" dir="rtl" lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>الوصلة الحالية - ديوان الصوفية</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Manrope:wght@400;500;700&family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#0a5750",
+            "primary-light": "#158c82",
+            "background-dark": "#121616",
+          },
+          fontFamily: {
+            "display": ["Cairo", "Manrope", "sans-serif"],
+            "serif": ["Amiri", "serif"],
+          },
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="../css/design.css">
+  <style>
+    @keyframes pulse-ring {
+      0%   { transform: scale(1); opacity: 0.5; }
+      100% { transform: scale(1.4); opacity: 0; }
+    }
+    .live-pulse::after {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      border: 2px solid rgba(16,185,129,0.5);
+      animation: pulse-ring 1.5s ease-out infinite;
+    }
+  </style>
+</head>
+<body class="bg-[#121616] text-white font-display min-h-screen selection:bg-primary
+  selection:text-white overflow-x-hidden">
+
+  <!-- Background -->
+  <div class="fixed inset-0 pointer-events-none z-0"
+    style="background:radial-gradient(circle at 50% 20%, rgba(10,87,80,0.15) 0%, #121616 60%)"></div>
+
+  <!-- Header -->
+  <header class="glass-header sticky top-0 z-50 border-b border-white/5 px-4 py-4 md:px-8">
+    <div class="max-w-3xl mx-auto flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <!-- Live badge -->
+        <div class="flex items-center gap-2">
+          <div class="relative">
+            <div class="w-2.5 h-2.5 rounded-full bg-emerald-400 live-pulse"></div>
+          </div>
+          <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider">مباشر</span>
+        </div>
+        <div class="h-5 w-px bg-white/10"></div>
+        <div>
+          <h1 class="text-white font-bold text-base">الوصلة الحالية</h1>
+          <p class="text-[#9db8b6] text-xs">
+            <span id="waslaItemCount">—</span>
+          </p>
+        </div>
+      </div>
+      <div class="flex items-center gap-2">
+        <button id="backBtn" class="p-2 rounded-full hover:bg-white/5 transition-colors
+          text-[#9db8b6] hover:text-white">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main class="relative z-10 max-w-3xl mx-auto px-4 py-8 pb-24">
+
+    <!-- No wasla message -->
+    <div id="noWaslaMessage" class="hidden flex flex-col items-center justify-center
+      gap-6 text-center py-20">
+      <div class="w-20 h-20 rounded-full bg-primary/10 border border-primary/20
+        flex items-center justify-center">
+        <span class="material-symbols-outlined text-[#9db8b6] text-4xl">queue_music</span>
+      </div>
+      <div>
+        <h2 class="text-white text-xl font-bold mb-2">لا توجد وصلة حالية</h2>
+        <p class="text-[#9db8b6] text-sm max-w-xs mx-auto">
+          ينتظر المنشد الرئيسي مشاركة وصلة جديدة.
+        </p>
+      </div>
+      <a href="poems.html" class="px-6 py-3 rounded-xl bg-primary/20 border border-primary/30
+        text-primary-light hover:bg-primary/30 transition-all font-bold text-sm">
+        تصفح الديوان
+      </a>
+    </div>
+
+    <!-- Wasla container -->
+    <div id="waslaContainer" class="hidden flex flex-col gap-6">
+      <!-- Wasla header card -->
+      <div class="glass-card rounded-2xl p-6">
+        <div class="flex items-center gap-4">
+          <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-primary to-[#052e2a]
+            flex items-center justify-center shrink-0 border border-primary/30">
+            <span class="material-symbols-outlined text-primary-light text-2xl">queue_music</span>
+          </div>
+          <div class="flex-1 min-w-0">
+            <h2 id="waslaName" class="text-white font-serif font-bold text-2xl truncate"></h2>
+            <p class="text-[#9db8b6] text-sm mt-1">
+              شارك بواسطة: <span id="sharedBy" class="text-primary-light font-bold"></span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Items list -->
+      <div id="waslaItemsList" class="flex flex-col gap-3">
+        <!-- Loaded dynamically -->
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Mobile bottom nav -->
+  <nav class="bottom-nav lg:hidden">
+    <a href="../index.html" class="bottom-nav-item">
+      <span class="material-symbols-outlined">home</span>
+      الرئيسية
+    </a>
+    <a href="poems.html" class="bottom-nav-item">
+      <span class="material-symbols-outlined">auto_stories</span>
+      الديوان
+    </a>
+    <a href="current-poem.html" class="bottom-nav-item">
+      <span class="material-symbols-outlined">menu_book</span>
+      حالية
+    </a>
+    <a href="waslat.html" class="bottom-nav-item">
+      <span class="material-symbols-outlined">queue_music</span>
+      الوصلات
+    </a>
+  </nav>
+
+  <script type="module" src="../js/pages/current-wasla.js"></script>
+</body>
+</html>

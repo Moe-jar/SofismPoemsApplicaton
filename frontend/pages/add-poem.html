@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html class="dark" dir="rtl" lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>إضافة قصيدة - ديوان الصوفية</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Amiri:wght@400;700&family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#218362",
+            "primary-dark": "#1a6b50",
+            "primary-light": "#2da37a",
+            "background-dark": "#121715",
+            "surface-dark": "#1d2522",
+          },
+          fontFamily: {
+            "display": ["Manrope", "Cairo", "sans-serif"],
+            "serif": ["Amiri", "serif"],
+          },
+          boxShadow: {
+            "glass": "0 8px 32px 0 rgba(0, 0, 0, 0.3)",
+            "glow": "0 0 20px rgba(33, 131, 98, 0.3)"
+          }
+        },
+      },
+    }
+  </script>
+  <link rel="stylesheet" href="../css/design.css">
+  <style>
+    textarea::-webkit-scrollbar { width: 8px; }
+    textarea::-webkit-scrollbar-track { background: rgba(255,255,255,0.02); }
+    textarea::-webkit-scrollbar-thumb { background: rgba(33,131,98,0.4); border-radius: 4px; }
+    textarea::-webkit-scrollbar-thumb:hover { background: rgba(33,131,98,0.6); }
+    @keyframes float-bg {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+    .floating-bg { animation: float-bg 8s ease-in-out infinite; }
+  </style>
+</head>
+<body class="bg-[#121715] text-white font-display overflow-x-hidden min-h-screen relative
+  selection:bg-primary selection:text-white">
+
+  <!-- Background -->
+  <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+    <div class="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-primary/10
+      rounded-full blur-[120px] floating-bg"></div>
+    <div class="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-[#0F3D2E]/20
+      rounded-full blur-[100px] floating-bg" style="animation-delay:2s"></div>
+    <div class="absolute inset-0 opacity-[0.03] pattern-overlay"></div>
+  </div>
+
+  <div class="relative z-10 flex flex-col min-h-screen">
+    <!-- Header -->
+    <header class="flex items-center justify-between border-b border-white/5 px-4 py-4
+      md:px-10 backdrop-blur-md sticky top-0 z-50 bg-[#121715]/80">
+      <div class="flex items-center gap-3">
+        <a id="cancelBtn" href="poems.html"
+          class="text-white/80 hover:text-white transition-colors p-1">
+          <span class="material-symbols-outlined text-2xl">arrow_forward</span>
+        </a>
+        <div class="h-7 w-px bg-white/10 mx-1"></div>
+        <div class="flex items-center gap-2.5">
+          <div class="size-8 rounded-full bg-primary/20 flex items-center justify-center
+            text-primary border border-primary/30">
+            <span class="material-symbols-outlined text-base">history_edu</span>
+          </div>
+          <h1 class="text-white text-lg font-bold font-serif">ديوان الصوفية</h1>
+        </div>
+      </div>
+      <div class="hidden md:flex items-center gap-3">
+        <div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10">
+          <div class="w-2 h-2 rounded-full bg-primary animate-pulse"></div>
+          <span class="text-xs text-white/70 font-medium" id="formStatusBadge">جديدة</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main content -->
+    <main class="flex-1 flex justify-center py-8 px-4 sm:px-6 lg:px-8">
+      <div class="w-full max-w-[800px] flex flex-col gap-8">
+
+        <!-- Page title -->
+        <div class="text-center space-y-2 mb-2">
+          <h2 id="pageTitle" class="text-white text-2xl md:text-4xl font-serif font-bold">
+            إضافة قصيدة جديدة
+          </h2>
+          <p class="text-[#a1b5ae] text-sm md:text-base max-w-lg mx-auto">
+            شاركنا نفحاتك الروحية وأضف جوهرة جديدة إلى عقد ديوان الصوفية
+          </p>
+        </div>
+
+        <!-- Form card -->
+        <form id="poemForm" class="glass-panel rounded-2xl p-6 md:p-10 shadow-glass
+          flex flex-col gap-7 relative overflow-hidden" novalidate>
+          <!-- Shine line -->
+          <div class="absolute top-0 right-0 w-full h-[1px] bg-gradient-to-l
+            from-transparent via-primary/50 to-transparent opacity-50"></div>
+
+          <!-- Title -->
+          <div class="flex flex-col gap-2">
+            <label class="text-white/90 text-sm font-bold flex items-center gap-2" for="title">
+              <span class="material-symbols-outlined text-primary text-lg">edit_note</span>
+              عنوان القصيدة <span class="text-red-400">*</span>
+            </label>
+            <input id="title" type="text"
+              placeholder="مثل: البردة، نهج البردة..."
+              class="w-full bg-[#121715] border border-[#3f504a] text-white
+                placeholder:text-[#a1b5ae]/50 rounded-xl px-4 py-3.5 focus:border-primary
+                focus:ring-1 focus:ring-primary focus:outline-none transition-all hover:border-[#5a6e66]">
+            <p id="titleError" class="field-error error-msg hidden"></p>
+          </div>
+
+          <!-- Poet + Maqam row -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <!-- Poet -->
+            <div class="flex flex-col gap-2">
+              <label class="text-white/90 text-sm font-bold flex items-center gap-2" for="poetId">
+                <span class="material-symbols-outlined text-primary text-lg">person_book</span>
+                اسم الشاعر
+              </label>
+              <div class="relative">
+                <select id="poetId"
+                  class="w-full appearance-none bg-[#121715] border border-[#3f504a] text-white
+                    rounded-xl px-4 py-3.5 pr-10 focus:border-primary focus:ring-1
+                    focus:ring-primary focus:outline-none cursor-pointer transition-all
+                    hover:border-[#5a6e66]">
+                  <option value="" disabled selected>اختر الشاعر...</option>
+                </select>
+                <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2
+                  text-[#a1b5ae] pointer-events-none">expand_more</span>
+              </div>
+              <!-- New poet input (hidden by default) -->
+              <div id="newPoetGroup" class="hidden flex-col gap-1.5">
+                <label class="text-white/70 text-xs">اسم الشاعر الجديد</label>
+                <input id="newPoetName" type="text" placeholder="اكتب اسم الشاعر..."
+                  class="w-full bg-[#121715] border border-[#3f504a] text-white
+                    placeholder:text-[#a1b5ae]/50 rounded-xl px-4 py-3 focus:border-primary
+                    focus:outline-none transition-all">
+                <p id="newPoetError" class="field-error error-msg hidden"></p>
+              </div>
+            </div>
+            <!-- Maqam -->
+            <div class="flex flex-col gap-2">
+              <label class="text-white/90 text-sm font-bold flex items-center gap-2" for="maqamId">
+                <span class="material-symbols-outlined text-primary text-lg">music_note</span>
+                المقام الموسيقي
+              </label>
+              <div class="relative">
+                <select id="maqamId"
+                  class="w-full appearance-none bg-[#121715] border border-[#3f504a] text-white
+                    rounded-xl px-4 py-3.5 pr-10 focus:border-primary focus:ring-1
+                    focus:ring-primary focus:outline-none cursor-pointer transition-all
+                    hover:border-[#5a6e66]">
+                  <option value="" disabled selected>اختر المقام...</option>
+                </select>
+                <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2
+                  text-[#a1b5ae] pointer-events-none">expand_more</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Category -->
+          <div class="flex flex-col gap-3">
+            <label class="text-white/90 text-sm font-bold flex items-center gap-2">
+              <span class="material-symbols-outlined text-primary text-lg">category</span>
+              التصنيف <span class="text-red-400">*</span>
+            </label>
+            <div class="flex flex-wrap gap-2.5">
+              <label class="cursor-pointer group">
+                <input class="peer sr-only" name="category" type="radio" value="Ilahiyat">
+                <div class="px-4 py-2.5 rounded-lg border border-[#3f504a] bg-[#121715]
+                  text-[#a1b5ae] peer-checked:bg-primary/20 peer-checked:border-primary
+                  peer-checked:text-primary transition-all group-hover:bg-[#1d2522]">
+                  إلهيات
+                </div>
+              </label>
+              <label class="cursor-pointer group">
+                <input class="peer sr-only" name="category" type="radio" value="Nabawiyat">
+                <div class="px-4 py-2.5 rounded-lg border border-[#3f504a] bg-[#121715]
+                  text-[#a1b5ae] peer-checked:bg-primary/20 peer-checked:border-primary
+                  peer-checked:text-primary transition-all group-hover:bg-[#1d2522]">
+                  نبويات
+                </div>
+              </label>
+              <label class="cursor-pointer group">
+                <input class="peer sr-only" name="category" type="radio" value="Hadra">
+                <div class="px-4 py-2.5 rounded-lg border border-[#3f504a] bg-[#121715]
+                  text-[#a1b5ae] peer-checked:bg-primary/20 peer-checked:border-primary
+                  peer-checked:text-primary transition-all group-hover:bg-[#1d2522]">
+                  حضرة
+                </div>
+              </label>
+              <label class="cursor-pointer group">
+                <input class="peer sr-only" name="category" type="radio" value="Mufrad">
+                <div class="px-4 py-2.5 rounded-lg border border-[#3f504a] bg-[#121715]
+                  text-[#a1b5ae] peer-checked:bg-primary/20 peer-checked:border-primary
+                  peer-checked:text-primary transition-all group-hover:bg-[#1d2522]">
+                  مفرد
+                </div>
+              </label>
+            </div>
+            <p id="categoryError" class="field-error error-msg hidden"></p>
+          </div>
+
+          <!-- Hadra Section (shown only when Hadra is selected) -->
+          <div id="hadraSectionGroup" class="hidden flex flex-col gap-2">
+            <label class="text-white/90 text-sm font-bold flex items-center gap-2" for="hadraSection">
+              <span class="material-symbols-outlined text-primary text-lg">groups</span>
+              قسم الحضرة
+            </label>
+            <div class="relative">
+              <select id="hadraSection"
+                class="w-full appearance-none bg-[#121715] border border-[#3f504a] text-white
+                  rounded-xl px-4 py-3.5 pr-10 focus:border-primary focus:ring-1
+                  focus:ring-primary focus:outline-none cursor-pointer transition-all">
+                <option value="">اختر القسم...</option>
+                <option value="Opening">الافتتاح</option>
+                <option value="Main">الرئيسي</option>
+                <option value="Closing">الختام</option>
+              </select>
+              <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2
+                text-[#a1b5ae] pointer-events-none">expand_more</span>
+            </div>
+          </div>
+
+          <!-- Poem text -->
+          <div class="flex flex-col gap-2">
+            <div class="flex justify-between items-end">
+              <label class="text-white/90 text-sm font-bold flex items-center gap-2" for="content">
+                <span class="material-symbols-outlined text-primary text-lg">format_quote</span>
+                نص القصيدة <span class="text-red-400">*</span>
+              </label>
+              <span class="text-xs text-[#a1b5ae] bg-white/5 px-2 py-1 rounded">
+                سطر لكل شطر
+              </span>
+            </div>
+            <div class="relative group/textarea">
+              <textarea id="content" rows="12"
+                placeholder="اكتب أبيات القصيدة هنا، شطر واحد في كل سطر..."
+                class="w-full bg-[#121715] border border-[#3f504a] text-white
+                  placeholder:text-[#a1b5ae]/30 rounded-xl px-6 py-6 focus:border-primary
+                  focus:ring-1 focus:ring-primary focus:outline-none font-serif text-lg
+                  leading-[2.5] text-center resize-y transition-all hover:border-[#5a6e66]"></textarea>
+              <!-- Corner accents -->
+              <div class="absolute top-2 right-2 text-[#3f504a] group-focus-within/textarea:text-primary/50
+                transition-colors pointer-events-none">
+                <svg fill="currentColor" height="18" viewBox="0 0 24 24" width="18">
+                  <path d="M5 5h6v2H7v4H5V5z"/>
+                </svg>
+              </div>
+              <div class="absolute top-2 left-2 text-[#3f504a] group-focus-within/textarea:text-primary/50
+                transition-colors pointer-events-none transform -scale-x-100">
+                <svg fill="currentColor" height="18" viewBox="0 0 24 24" width="18">
+                  <path d="M5 5h6v2H7v4H5V5z"/>
+                </svg>
+              </div>
+            </div>
+            <p id="contentError" class="field-error error-msg hidden"></p>
+            <p class="text-xs text-[#a1b5ae]">يرجى التأكد من صحة التشكيل لضمان دقة القراءة.</p>
+          </div>
+
+          <!-- Action buttons -->
+          <div class="flex flex-col-reverse md:flex-row items-center gap-3 mt-2 pt-5
+            border-t border-white/5">
+            <a id="cancelBtn" href="poems.html"
+              class="w-full md:w-auto px-5 py-3 rounded-xl text-[#a1b5ae] text-sm font-bold
+                hover:text-white hover:bg-white/5 transition-colors text-center">
+              إلغاء
+            </a>
+            <div class="flex-1"></div>
+            <button id="draftBtn" type="button"
+              class="w-full md:w-auto px-5 py-3 rounded-xl bg-white/5 text-white text-sm
+                font-bold border border-white/10 hover:bg-white/10 transition-colors
+                flex items-center justify-center gap-2">
+              <span class="material-symbols-outlined text-lg">save</span>
+              حفظ كمسودة
+            </button>
+            <button id="submitBtn" type="submit"
+              class="w-full md:w-auto min-w-[150px] bg-gradient-to-r from-primary-dark to-primary
+                text-white font-bold text-sm px-7 py-3 rounded-xl hover:shadow-glow
+                hover:to-primary-light transition-all duration-300 active:scale-[0.98]
+                flex items-center justify-center gap-2">
+              <span class="material-symbols-outlined text-lg">publish</span>
+              حفظ ونشر
+            </button>
+          </div>
+        </form>
+
+        <div class="text-center pb-8">
+          <p class="text-xs text-[#a1b5ae]/50">جميع الحقوق محفوظة © ديوان الصوفية 2024</p>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script type="module" src="../js/pages/add-poem.js"></script>
+</body>
+</html>
