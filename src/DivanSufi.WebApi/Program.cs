@@ -7,54 +7,74 @@ using DivanSufi.WebApi.Middleware;
 using DivanSufi.WebApi.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.Swagger; 
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Allow environment variables like JWT_KEY / JWT_ISSUER / JWT_AUDIENCE to override
-// the appsettings values (used on Render where double-underscore naming is inconvenient).
+// JWT settings
 var jwtKey = Environment.GetEnvironmentVariable("JWT_KEY")
              ?? builder.Configuration["Jwt:Key"]
-             ?? throw new InvalidOperationException("JWT signing key is not configured. Set JWT_KEY environment variable or Jwt:Key in appsettings.");
+             ?? throw new InvalidOperationException(
+                 "JWT signing key is not configured. Set JWT_KEY environment variable or Jwt:Key in appsettings.");
+
 var jwtIssuer = Environment.GetEnvironmentVariable("JWT_ISSUER")
                 ?? builder.Configuration["Jwt:Issuer"]
                 ?? "DivanSufi";
+
 var jwtAudience = Environment.GetEnvironmentVariable("JWT_AUDIENCE")
                   ?? builder.Configuration["Jwt:Audience"]
                   ?? "DivanSufiUsers";
 
+// Services
 builder.Services.AddControllers();
 builder.Services.AddSignalR();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen(options =>
+{
+    options.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = "DivanSufi API",
+        Version = "v1"
+    });
+
+    options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        Name = "Authorization",
+        Type = SecuritySchemeType.Http,
+        Scheme = "bearer",
+        BearerFormat = "JWT",
+        In = ParameterLocation.Header,
+        Description = "Enter: Bearer {your JWT token}"
+    });
+
+    options.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                }
+            },
+            Array.Empty<string>()
+        }
+    });
+});
+
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddScoped<ICurrentStateHub, CurrentStateHubService>();
 
+// OPEN CORS: accept any origin
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(policy =>
     {
-        // Allow common frontend dev servers and production hosts
-        var origins = new List<string>
-        {
-            "http://localhost:5500", "http://127.0.0.1:5500",
-            "http://localhost:3000", "http://127.0.0.1:3000",
-            "http://localhost:8080", "http://127.0.0.1:8080",
-            "http://localhost:4200", "http://127.0.0.1:4200",
-        };
-        if (builder.Environment.IsDevelopment())
-            origins.Add("null"); // allow file:// origins in development only
-
-        // Allow additional origins from configuration (for production deployment)
-        var configOrigins = builder.Configuration.GetSection("AllowedOrigins").Get<string[]>();
-        if (configOrigins?.Length > 0) origins.AddRange(configOrigins);
-
-        // Also support ALLOWED_ORIGINS env var (comma-separated) used on Render
-        var envOrigins = Environment.GetEnvironmentVariable("ALLOWED_ORIGINS");
-        if (!string.IsNullOrWhiteSpace(envOrigins))
-            origins.AddRange(envOrigins.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries));
-
-        policy.WithOrigins(origins.ToArray())
+        policy.AllowAnyOrigin()
               .AllowAnyHeader()
-              .AllowAnyMethod()
-              .AllowCredentials();
+              .AllowAnyMethod();
     });
 });
 
@@ -71,14 +91,17 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidAudience = jwtAudience,
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey))
         };
+
         options.Events = new JwtBearerEvents
         {
             OnMessageReceived = context =>
             {
                 var accessToken = context.Request.Query["access_token"];
                 var path = context.HttpContext.Request.Path;
+
                 if (!string.IsNullOrEmpty(accessToken) && path.StartsWithSegments("/hubs"))
                     context.Token = accessToken;
+
                 return Task.CompletedTask;
             }
         };
@@ -88,16 +111,16 @@ builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
+// Database seed
 using (var scope = app.Services.CreateScope())
 {
     try
     {
         var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-        
-        // Only seed in development or explicitly allow via env var
-        var shouldSeed = app.Environment.IsDevelopment() 
-                         || bool.TryParse(Environment.GetEnvironmentVariable("ALLOW_SEED"), out var allow) && allow;
-        
+
+        var shouldSeed = app.Environment.IsDevelopment()
+                         || (bool.TryParse(Environment.GetEnvironmentVariable("ALLOW_SEED"), out var allow) && allow);
+
         if (shouldSeed)
             SeedData.Seed(db);
     }
@@ -109,10 +132,29 @@ using (var scope = app.Services.CreateScope())
     }
 }
 
+// Middleware
 app.UseMiddleware<ExceptionMiddleware>();
+
+app.UseSwagger();
+app.UseSwaggerUI();
+
 app.UseCors();
+
 app.UseAuthentication();
 app.UseAuthorization();
+
+// Simple routes so / and /health do not return 404
+app.MapGet("/", () => Results.Ok(new
+{
+    message = "DivanSufi API is running",
+    swagger = "/swagger"
+}));
+
+app.MapGet("/health", () => Results.Ok(new
+{
+    status = "healthy"
+}));
+
 app.MapControllers();
 app.MapHub<DivanHub>("/hubs/divan");
 
