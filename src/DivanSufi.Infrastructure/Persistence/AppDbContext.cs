@@ -23,6 +23,9 @@ public class AppDbContext : DbContext, IAppDbContext
     {
         base.OnModelCreating(modelBuilder);
 
+        
+
+       
         modelBuilder.Entity<WaslaItem>()
             .HasOne(wi => wi.Wasla)
             .WithMany(w => w.Items)

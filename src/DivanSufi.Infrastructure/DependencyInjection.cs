@@ -17,11 +17,11 @@ public static class DependencyInjection
 
         services.AddDbContext<AppDbContext>(options =>
         {
-            if (usePostgres)
+            
                 options.UseNpgsql(connectionString, npgsql =>
                     npgsql.EnableRetryOnFailure(3));
-            else
-                options.UseSqlite(connectionString);
+            
+
         });
 
         services.AddScoped<IAppDbContext>(provider => provider.GetRequiredService<AppDbContext>());
