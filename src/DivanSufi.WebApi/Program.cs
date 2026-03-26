@@ -90,14 +90,27 @@ var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
 {
-    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-    SeedData.Seed(db);
+    try
+    {
+        var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+        
+        // Only seed in development or explicitly allow via env var
+        var shouldSeed = app.Environment.IsDevelopment() 
+                         || bool.TryParse(Environment.GetEnvironmentVariable("ALLOW_SEED"), out var allow) && allow;
+        
+        if (shouldSeed)
+            SeedData.Seed(db);
+    }
+    catch (Exception ex)
+    {
+        var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
+        logger.LogError(ex, "Database seeding failed");
+        throw;
+    }
 }
 
 app.UseMiddleware<ExceptionMiddleware>();
 app.UseCors();
-app.UseDefaultFiles();
-app.UseStaticFiles();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();

@@ -20,7 +20,7 @@ namespace DivanSufi.Infrastructure.Migrations
                     NameAr = table.Column<string>(type: "TEXT", nullable: false),
                     NameEn = table.Column<string>(type: "TEXT", nullable: true),
                     Description = table.Column<string>(type: "TEXT", nullable: true),
-                    IsActive = table.Column<bool>(type: "INTEGER", nullable: false),
+                    IsActive = table.Column<bool>(type: "BOOLEAN", nullable: false),
                     SortOrder = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
@@ -54,7 +54,7 @@ namespace DivanSufi.Infrastructure.Migrations
                     Username = table.Column<string>(type: "TEXT", nullable: false),
                     PasswordHash = table.Column<string>(type: "TEXT", nullable: false),
                     Role = table.Column<int>(type: "INTEGER", nullable: false),
-                    IsActive = table.Column<bool>(type: "INTEGER", nullable: false),
+                    IsActive = table.Column<bool>(type: "BOOLEAN", nullable: false),
                     CreatedAtUtc = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
@@ -81,7 +81,7 @@ namespace DivanSufi.Infrastructure.Migrations
                     CreatedAtUtc = table.Column<DateTime>(type: "TEXT", nullable: false),
                     UpdatedAtUtc = table.Column<DateTime>(type: "TEXT", nullable: false),
                     CreatedByUserId = table.Column<int>(type: "INTEGER", nullable: false),
-                    IsArchived = table.Column<bool>(type: "INTEGER", nullable: false)
+                    IsArchived = table.Column<bool>(type: "BOOLEAN", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -139,7 +139,7 @@ namespace DivanSufi.Infrastructure.Migrations
                     CreatedByUserId = table.Column<int>(type: "INTEGER", nullable: false),
                     CreatedAtUtc = table.Column<DateTime>(type: "TEXT", nullable: false),
                     UpdatedAtUtc = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    IsArchived = table.Column<bool>(type: "INTEGER", nullable: false)
+                    IsArchived = table.Column<bool>(type: "BOOLEAN", nullable: false)
                 },
                 constraints: table =>
                 {
