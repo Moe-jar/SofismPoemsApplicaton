@@ -2,6 +2,7 @@ using DivanSufi.Application.Interfaces;
 using DivanSufi.Domain.Entities;
 using DivanSufi.Domain.Enums;
 using Microsoft.EntityFrameworkCore;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace DivanSufi.Infrastructure.Persistence;
 
@@ -23,9 +24,52 @@ public class AppDbContext : DbContext, IAppDbContext
     {
         base.OnModelCreating(modelBuilder);
 
-        
+        // Configure auto-incrementing primary keys for PostgreSQL
+        modelBuilder.Entity<User>()
+            .Property(u => u.Id)
+            .ValueGeneratedOnAdd()
+            .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-       
+        modelBuilder.Entity<Poet>()
+            .Property(p => p.Id)
+            .ValueGeneratedOnAdd()
+            .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+        modelBuilder.Entity<Maqam>()
+            .Property(m => m.Id)
+            .ValueGeneratedOnAdd()
+            .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+        modelBuilder.Entity<Poem>()
+            .Property(p => p.Id)
+            .ValueGeneratedOnAdd()
+            .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+        modelBuilder.Entity<Wasla>()
+            .Property(w => w.Id)
+            .ValueGeneratedOnAdd()
+            .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+        modelBuilder.Entity<WaslaItem>()
+            .Property(wi => wi.Id)
+            .ValueGeneratedOnAdd()
+            .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+        modelBuilder.Entity<CurrentPoemState>()
+            .Property(cps => cps.Id)
+            .ValueGeneratedOnAdd()
+            .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+        modelBuilder.Entity<CurrentWaslaState>()
+            .Property(cws => cws.Id)
+            .ValueGeneratedOnAdd()
+            .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+        modelBuilder.Entity<ShareHistory>()
+            .Property(sh => sh.Id)
+            .ValueGeneratedOnAdd()
+            .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
         modelBuilder.Entity<WaslaItem>()
             .HasOne(wi => wi.Wasla)
             .WithMany(w => w.Items)

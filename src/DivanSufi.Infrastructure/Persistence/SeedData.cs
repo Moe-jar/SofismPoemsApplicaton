@@ -76,7 +76,7 @@ public static class SeedData
             var poems = new List<Poem>
             {
                 new()
-                {
+                {  
                     Title = "بشنو این نی",
                     Body = "بشنو این نی چون شکایت می‌کند\nاز جدایی‌ها حکایت می‌کند\n\nبشنو اين ني چون شكايت مي‌كند\nاز جدايي‌ها حكايت مي‌كند\n\nهر كسي كو دور ماند از اصل خويش\nباز جويد روزگار وصل خويش",
                     PoetId = rumiPoet.Id,
@@ -92,6 +92,7 @@ public static class SeedData
                 },
                 new()
                 {
+                      
                     Title = "أنا من أهوى",
                     Body = "أنا من أهوى ومن أهوى أنا\nنحن روحان حللنا بدنا\n\nفإذا أبصرتني أبصرته\nوإذا أبصرته أبصرتنا\n\nيا نسيم الريح بلّغ من نهوى\nأن نار الشوق لا تُطفأ بنا",
                     PoetId = hallajPoet.Id,
@@ -107,6 +108,7 @@ public static class SeedData
                 },
                 new()
                 {
+                    
                     Title = "شُغلي بذكرك",
                     Body = "شغلت بذكرك ما بيني وبين الهوى\nوغيّبتني حتى ما أُحسّ سواكا\n\nوصرت في كل ما أرى وكل ما أسمع\nومَن سواك رآك وليس يراكا",
                     PoetId = rumiPoet.Id,
@@ -123,6 +125,7 @@ public static class SeedData
                 },
                 new()
                 {
+                   
                     Title = "خمرة الحب",
                     Body = "شربنا على ذكر الحبيب مدامةً\nسكرنا بها من قبل أن يُخلق الكرم\n\nلها البدر كأس والشمس دنّها\nوكم من ندامى في الوجود مُكرَّم\n\nفمن لم يذق منها بقي في حجابه\nومن شرب الكأسَ المصفّى تكلّم",
                     PoetId = ibnFaridPoet.Id,
@@ -137,7 +140,7 @@ public static class SeedData
                     UpdatedAtUtc = DateTime.UtcNow
                 },
                 new()
-                {
+                {  
                     Title = "يا ليل الصب",
                     Body = "يا ليل الصبّ متى غده\nأقيام الساعة موعده\n\nرحم الله أمرأً قال آمين\nثم قال الصلاة تسعده\n\nيا رسول الله يا خير الورى\nأنت بدر التم ما أجوده",
                     PoetId = ibnFaridPoet.Id,
@@ -153,7 +156,7 @@ public static class SeedData
                     UpdatedAtUtc = DateTime.UtcNow
                 },
                 new()
-                {
+                {  
                     Title = "الهي",
                     Body = "إلهي لست للفردوس أهلاً\nولا أقوى على نار الجحيم\n\nفهب لي توبة واغفر ذنوبي\nفإنك غافر الذنب العظيم\n\nوعاملني بفضلك يا إلهي\nوخذ بيدي وأقلني من هميم",
                     PoetId = context.Poets.First(p => p.NameAr == "رابعة العدوية").Id,
@@ -173,6 +176,7 @@ public static class SeedData
 
             var wasla = new Wasla
             {
+                
                 Name = "وصلة الإلهيات",
                 Description = "وصلة من أجمل القصائد الإلهية الصوفية",
                 CreatedByUserId = leadUser.Id,
@@ -184,9 +188,9 @@ public static class SeedData
 
             var waslaItems = new List<WaslaItem>
             {
-                new() { WaslaId = wasla.Id, PoemId = poems[0].Id, SortOrder = 1 },
-                new() { WaslaId = wasla.Id, PoemId = poems[1].Id, SortOrder = 2 },
-                new() { WaslaId = wasla.Id, PoemId = poems[5].Id, SortOrder = 3 },
+                new() {WaslaId = wasla.Id, PoemId = poems[0].Id, SortOrder = 1 },
+                new() {WaslaId = wasla.Id, PoemId = poems[1].Id, SortOrder = 2 },
+                new() {WaslaId = wasla.Id, PoemId = poems[5].Id, SortOrder = 3 },
             };
             context.WaslaItems.AddRange(waslaItems);
             context.SaveChanges();

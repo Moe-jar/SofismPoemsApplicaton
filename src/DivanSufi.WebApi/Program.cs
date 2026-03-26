@@ -8,7 +8,7 @@ using DivanSufi.WebApi.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using Swashbuckle.AspNetCore.Swagger; 
+using Swashbuckle.AspNetCore; 
 
 var builder = WebApplication.CreateBuilder(args);
 
