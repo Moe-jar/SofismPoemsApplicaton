@@ -60,7 +60,7 @@ public class WaslatController : ControllerBase
             .Include(w => w.Items).ThenInclude(i => i.Poem).ThenInclude(p => p.Maqam)
             .FirstOrDefaultAsync(w => w.Id == id);
 
-        if (wasla == null) return NotFound();
+        if (wasla == null) return NotFound(new { error = "الوصلة غير موجودة" });
         return Ok(MapToDetail(wasla));
     }
 

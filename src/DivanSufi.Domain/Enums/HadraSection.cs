@@ -2,7 +2,7 @@ namespace DivanSufi.Domain.Enums;
 
 public enum HadraSection
 {
-    Matali = 0,
-    Ruku = 1,
-    Qiyam = 2
+    Opening = 0,
+    Main = 1,
+    Closing = 2
 }

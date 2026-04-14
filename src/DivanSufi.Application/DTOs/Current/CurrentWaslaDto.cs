@@ -7,5 +7,9 @@ public record CurrentWaslaDto(
     WaslaDetailDto Wasla,
     string SharedByFullName,
     DateTime SharedAtUtc,
-    string? Message
-);
+    string? Message)
+{
+    // Frontend-compatible aliases
+    public string SharedByName => SharedByFullName;
+    public DateTime SharedAt => SharedAtUtc;
+}

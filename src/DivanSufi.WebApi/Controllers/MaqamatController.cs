@@ -34,7 +34,7 @@ public class MaqamatController : ControllerBase
     public async Task<IActionResult> GetById(int id)
     {
         var maqam = await _db.Maqamat.FindAsync(id);
-        if (maqam == null) return NotFound();
+        if (maqam == null) return NotFound(new { error = "المقام غير موجود" });
         return Ok(new MaqamDto(maqam.Id, maqam.NameAr, maqam.NameEn, maqam.Description, maqam.IsActive, maqam.SortOrder));
     }
 
@@ -53,7 +53,7 @@ public class MaqamatController : ControllerBase
     public async Task<IActionResult> Update(int id, [FromBody] CreateMaqamRequest request)
     {
         var maqam = await _db.Maqamat.FindAsync(id);
-        if (maqam == null) return NotFound();
+        if (maqam == null) return NotFound(new { error = "المقام غير موجود" });
         maqam.NameAr = request.NameAr;
         maqam.NameEn = request.NameEn;
         maqam.Description = request.Description;
@@ -67,7 +67,7 @@ public class MaqamatController : ControllerBase
     public async Task<IActionResult> Delete(int id)
     {
         var maqam = await _db.Maqamat.FindAsync(id);
-        if (maqam == null) return NotFound();
+        if (maqam == null) return NotFound(new { error = "المقام غير موجود" });
         maqam.IsActive = false;
         await _db.SaveChangesAsync();
         return NoContent();
