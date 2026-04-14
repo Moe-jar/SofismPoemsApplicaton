@@ -28,7 +28,7 @@ public class AuthController : ControllerBase
             return Unauthorized(new { error = "بيانات الدخول غير صحيحة" });
 
         var token = _tokenService.GenerateToken(user);
-        return Ok(new LoginResponse(token, user.FullName, user.Role.ToString(), user.Id));
+        return Ok(new LoginResponse(token, user.FullName, user.Role.ToString(), user.Id, user.Username));
     }
 
     [Authorize]

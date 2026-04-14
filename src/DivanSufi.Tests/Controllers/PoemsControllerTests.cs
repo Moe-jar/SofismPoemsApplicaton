@@ -49,7 +49,7 @@ public class PoemsControllerTests
         db.Poems.Add(new Poem
         {
             Id = 1, Title = "قصيدة اختبار", Body = "نص القصيدة",
-            PoetId = 1, MaqamId = 1, Category = PoemCategory.Ilahiyyat,
+            PoetId = 1, MaqamId = 1, Category = PoemCategory.Ilahiyat,
             CreatedByUserId = userId,
             SearchNormalizedTitle = "قصيدة اختبار",
             SearchNormalizedBody = "نص القصيدة",
@@ -86,7 +86,7 @@ public class PoemsControllerTests
         using var db = CreateContext();
         var ctrl = CreateController(db);
         var result = await ctrl.GetById(999);
-        Assert.IsType<NotFoundResult>(result);
+        Assert.IsType<NotFoundObjectResult>(result);
     }
 
     [Fact]

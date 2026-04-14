@@ -86,7 +86,7 @@ public class PoemsController : ControllerBase
             .Include(x => x.CreatedByUser)
             .FirstOrDefaultAsync(x => x.Id == id);
 
-        if (poem == null) return NotFound();
+        if (poem == null) return NotFound(new { error = "القصيدة غير موجودة" });
 
         return Ok(new PoemDetailDto(
             poem.Id, poem.Title, poem.Body,
@@ -116,22 +116,24 @@ public class PoemsController : ControllerBase
             hadraSection = hs;
         }
 
-        var poet = await _db.Poets.FindAsync(request.PoetId);
+        var poet = await _db.Poets.FindAsync(request.ResolvedPoetId);
         if (poet == null) return BadRequest(new { error = "الشاعر غير موجود" });
+
+        var body = request.ResolvedBody;
 
         var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
 
         var poem = new Poem
         {
             Title = request.Title,
-            Body = request.Body,
-            PoetId = request.PoetId,
-            MaqamId = request.MaqamId,
+            Body = body,
+            PoetId = request.ResolvedPoetId,
+            MaqamId = request.ResolvedMaqamId,
             Category = cat,
             HadraSection = hadraSection,
             Notes = request.Notes,
             SearchNormalizedTitle = ArabicNormalizer.Normalize(request.Title),
-            SearchNormalizedBody = ArabicNormalizer.Normalize(request.Body),
+            SearchNormalizedBody = ArabicNormalizer.Normalize(body),
             SearchNormalizedPoet = ArabicNormalizer.Normalize(poet.NameAr),
             CreatedByUserId = userId,
             CreatedAtUtc = DateTime.UtcNow,
@@ -148,7 +150,7 @@ public class PoemsController : ControllerBase
     public async Task<IActionResult> Update(int id, [FromBody] CreatePoemRequest request)
     {
         var poem = await _db.Poems.Include(x => x.Poet).FirstOrDefaultAsync(x => x.Id == id);
-        if (poem == null) return NotFound();
+        if (poem == null) return NotFound(new { error = "القصيدة غير موجودة" });
 
         if (!Enum.TryParse<PoemCategory>(request.Category, out var cat))
             return BadRequest(new { error = "تصنيف القصيدة غير صحيح" });
@@ -163,18 +165,20 @@ public class PoemsController : ControllerBase
             hadraSection = hs;
         }
 
-        var poet = await _db.Poets.FindAsync(request.PoetId);
+        var poet = await _db.Poets.FindAsync(request.ResolvedPoetId);
         if (poet == null) return BadRequest(new { error = "الشاعر غير موجود" });
 
+        var body = request.ResolvedBody;
+
         poem.Title = request.Title;
-        poem.Body = request.Body;
-        poem.PoetId = request.PoetId;
-        poem.MaqamId = request.MaqamId;
+        poem.Body = body;
+        poem.PoetId = request.ResolvedPoetId;
+        poem.MaqamId = request.ResolvedMaqamId;
         poem.Category = cat;
         poem.HadraSection = hadraSection;
         poem.Notes = request.Notes;
         poem.SearchNormalizedTitle = ArabicNormalizer.Normalize(request.Title);
-        poem.SearchNormalizedBody = ArabicNormalizer.Normalize(request.Body);
+        poem.SearchNormalizedBody = ArabicNormalizer.Normalize(body);
         poem.SearchNormalizedPoet = ArabicNormalizer.Normalize(poet.NameAr);
         poem.UpdatedAtUtc = DateTime.UtcNow;
 
@@ -187,7 +191,7 @@ public class PoemsController : ControllerBase
     public async Task<IActionResult> Delete(int id)
     {
         var poem = await _db.Poems.FindAsync(id);
-        if (poem == null) return NotFound();
+        if (poem == null) return NotFound(new { error = "القصيدة غير موجودة" });
         poem.IsArchived = true;
         await _db.SaveChangesAsync();
         return NoContent();

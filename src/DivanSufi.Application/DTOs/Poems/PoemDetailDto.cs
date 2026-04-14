@@ -15,5 +15,10 @@ public record PoemDetailDto(
     string? Notes,
     DateTime CreatedAtUtc,
     DateTime UpdatedAtUtc,
-    string CreatedByFullName
-);
+    string CreatedByFullName)
+{
+    // Frontend-compatible aliases
+    public string PoetName => PoetNameAr;
+    public string MaqamName => MaqamNameAr;
+    public string Content => Body;
+}

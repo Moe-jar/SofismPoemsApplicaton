@@ -9,5 +9,9 @@ public record PoemListDto(
     string? MaqamNameEn,
     string Category,
     string? HadraSection,
-    DateTime CreatedAtUtc
-);
+    DateTime CreatedAtUtc)
+{
+    // Frontend-compatible aliases
+    public string PoetName => PoetNameAr;
+    public string MaqamName => MaqamNameAr;
+}

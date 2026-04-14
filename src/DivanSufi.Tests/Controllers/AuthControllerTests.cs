@@ -97,4 +97,24 @@ public class AuthControllerTests
         var result = await ctrl.Login(new LoginRequest("nobody", "x"));
         Assert.IsType<Microsoft.AspNetCore.Mvc.UnauthorizedObjectResult>(result);
     }
+
+    [Fact]
+    public async Task Login_ValidCredentials_ReturnsUsername()
+    {
+        using var db = CreateContext();
+        db.Users.Add(new User
+        {
+            Id = 2, FullName = "Test User", Username = "myuser",
+            PasswordHash = BCrypt.Net.BCrypt.HashPassword("mypass"),
+            Role = UserRole.Munshid, IsActive = true
+        });
+        db.SaveChanges();
+
+        var ctrl = new AuthController(db, CreateTokenService());
+        var result = await ctrl.Login(new LoginRequest("myuser", "mypass"));
+
+        var ok = Assert.IsType<Microsoft.AspNetCore.Mvc.OkObjectResult>(result);
+        var response = Assert.IsType<LoginResponse>(ok.Value);
+        Assert.Equal("myuser", response.Username);
+    }
 }

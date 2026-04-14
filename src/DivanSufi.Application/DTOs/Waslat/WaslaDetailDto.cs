@@ -13,4 +13,10 @@ public record WaslaDetailDto(
     IEnumerable<WaslaItemDto> Items
 );
 
-public record WaslaItemDto(int Id, int SortOrder, string? Notes, PoemListDto Poem);
+public record WaslaItemDto(int Id, int SortOrder, string? Notes, PoemListDto Poem)
+{
+    // Frontend-compatible flat fields
+    public int PoemId => Poem.Id;
+    public string PoemTitle => Poem.Title;
+    public string PoemPoetName => Poem.PoetNameAr;
+}

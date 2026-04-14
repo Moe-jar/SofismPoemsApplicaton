@@ -33,7 +33,7 @@ public class PoetsController : ControllerBase
     public async Task<IActionResult> GetById(int id)
     {
         var poet = await _db.Poets.FindAsync(id);
-        if (poet == null) return NotFound();
+        if (poet == null) return NotFound(new { error = "الشاعر غير موجود" });
         return Ok(new PoetDto(poet.Id, poet.NameAr, poet.NameEn, poet.Notes, poet.CreatedAtUtc));
     }
 
@@ -41,7 +41,7 @@ public class PoetsController : ControllerBase
     [Authorize(Roles = "LeadMunshid")]
     public async Task<IActionResult> Create([FromBody] CreatePoetRequest request)
     {
-        var poet = new Poet { NameAr = request.NameAr, NameEn = request.NameEn, Notes = request.Notes, CreatedAtUtc = DateTime.UtcNow };
+        var poet = new Poet { NameAr = request.ResolvedNameAr, NameEn = request.NameEn, Notes = request.Notes, CreatedAtUtc = DateTime.UtcNow };
         _db.Poets.Add(poet);
         await _db.SaveChangesAsync();
         return CreatedAtAction(nameof(GetById), new { id = poet.Id }, new PoetDto(poet.Id, poet.NameAr, poet.NameEn, poet.Notes, poet.CreatedAtUtc));
@@ -52,8 +52,8 @@ public class PoetsController : ControllerBase
     public async Task<IActionResult> Update(int id, [FromBody] CreatePoetRequest request)
     {
         var poet = await _db.Poets.FindAsync(id);
-        if (poet == null) return NotFound();
-        poet.NameAr = request.NameAr;
+        if (poet == null) return NotFound(new { error = "الشاعر غير موجود" });
+        poet.NameAr = request.ResolvedNameAr;
         poet.NameEn = request.NameEn;
         poet.Notes = request.Notes;
         await _db.SaveChangesAsync();
@@ -65,7 +65,7 @@ public class PoetsController : ControllerBase
     public async Task<IActionResult> Delete(int id)
     {
         var poet = await _db.Poets.FindAsync(id);
-        if (poet == null) return NotFound();
+        if (poet == null) return NotFound(new { error = "الشاعر غير موجود" });
         _db.Poets.Remove(poet);
         await _db.SaveChangesAsync();
         return NoContent();

@@ -2,8 +2,8 @@ namespace DivanSufi.Domain.Enums;
 
 public enum PoemCategory
 {
-    Ilahiyyat = 0,
-    Nabawiyyat = 1,
+    Ilahiyat = 0,
+    Nabawiyat = 1,
     Mufrad = 2,
     Hadra = 3
 }

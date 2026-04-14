@@ -133,12 +133,12 @@ using (var scope = app.Services.CreateScope())
 }
 
 // Middleware
+app.UseCors();
+
 app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseSwagger();
 app.UseSwaggerUI();
-
-app.UseCors();
 
 app.UseAuthentication();
 app.UseAuthorization();
